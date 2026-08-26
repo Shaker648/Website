@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400" role="img" aria-label="First 1 Car">
+  <defs>
+    <linearGradient id="body" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0"   stop-color="#1e293b"/>
+      <stop offset=".48" stop-color="#0f172a"/>
+      <stop offset="1"   stop-color="#020617"/>
+    </linearGradient>
+    <linearGradient id="glass" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0"   stop-color="#a855f7" stop-opacity=".55"/>
+      <stop offset=".55" stop-color="#6d28d9" stop-opacity=".3"/>
+      <stop offset="1"   stop-color="#22c55e" stop-opacity=".22"/>
+    </linearGradient>
+    <linearGradient id="edge" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0"   stop-color="#22c55e"/>
+      <stop offset=".55" stop-color="#4ade80"/>
+      <stop offset="1"   stop-color="#a855f7"/>
+    </linearGradient>
+    <radialGradient id="under" cx=".5" cy=".5" r=".5">
+      <stop offset="0" stop-color="#22c55e" stop-opacity=".75"/>
+      <stop offset="1" stop-color="#22c55e" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="glow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="7" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <!-- neon pad under the car -->
+  <ellipse cx="400" cy="352" rx="330" ry="30" fill="url(#under)"/>
+
+  <!-- body -->
+  <path d="M60 278 L58 236 C58 218 69 208 88 203 L152 189
+           C177 184 197 178 217 162 L272 114 C283 102 298 96 315 96
+           L520 96 C546 96 563 102 576 115 L642 182
+           C657 194 670 202 692 206 L728 214 C746 219 754 230 754 246
+           L754 278 L670 278 A68 68 0 0 0 534 278
+           L285 278 A68 68 0 0 0 149 278 Z"
+        fill="url(#body)" stroke="url(#edge)" stroke-width="3.2"
+        stroke-linejoin="round" filter="url(#glow)"/>
+
+  <!-- greenhouse: windscreen, doors, rear quarter -->
+  <path d="M296 168 L330 122 C336 113 345 109 356 109 L404 109 L404 168 Z" fill="url(#glass)"/>
+  <path d="M418 109 L500 109 L500 168 L418 168 Z" fill="url(#glass)"/>
+  <path d="M514 109 L534 109 C548 109 558 114 567 124 L604 168 L514 168 Z" fill="url(#glass)"/>
+
+  <!-- shoulder crease -->
+  <path d="M92 214 C210 208 330 206 500 210 C600 213 690 221 742 232"
+        fill="none" stroke="#22c55e" stroke-opacity=".28" stroke-width="2"/>
+  <!-- lower skirt -->
+  <path d="M150 268 L534 268" stroke="#a855f7" stroke-opacity=".3" stroke-width="2.5"/>
+
+  <!-- lights -->
+  <path d="M60 226 L92 222 L92 240 L60 243 Z" fill="#4ade80" filter="url(#glow)"/>
+  <path d="M752 232 L722 227 L722 245 L752 248 Z" fill="#ef4444" opacity=".9" filter="url(#glow)"/>
+
+  <!-- door handles -->
+  <rect x="392" y="196" width="26" height="6" rx="3" fill="#22c55e" opacity=".65"/>
+  <rect x="500" y="196" width="26" height="6" rx="3" fill="#22c55e" opacity=".65"/>
+
+  <!-- wheels -->
+  <g fill="none">
+    <circle cx="217" cy="278" r="66" fill="#020617" stroke="#1e293b" stroke-width="3"/>
+    <circle cx="217" cy="278" r="40" fill="#0b1220" stroke="url(#edge)" stroke-width="3" filter="url(#glow)"/>
+    <circle cx="217" cy="278" r="12" fill="#1e293b"/>
+    <g stroke="#22c55e" stroke-opacity=".55" stroke-width="3" stroke-linecap="round">
+      <path d="M217 244 V262"/><path d="M217 294 V312"/>
+      <path d="M183 278 H201"/><path d="M233 278 H251"/>
+      <path d="M193 254 L205 266"/><path d="M229 290 L241 302"/>
+      <path d="M241 254 L229 266"/><path d="M205 290 L193 302"/>
+    </g>
+
+    <circle cx="602" cy="278" r="66" fill="#020617" stroke="#1e293b" stroke-width="3"/>
+    <circle cx="602" cy="278" r="40" fill="#0b1220" stroke="url(#edge)" stroke-width="3" filter="url(#glow)"/>
+    <circle cx="602" cy="278" r="12" fill="#1e293b"/>
+    <g stroke="#22c55e" stroke-opacity=".55" stroke-width="3" stroke-linecap="round">
+      <path d="M602 244 V262"/><path d="M602 294 V312"/>
+      <path d="M568 278 H586"/><path d="M618 278 H636"/>
+      <path d="M578 254 L590 266"/><path d="M614 290 L626 302"/>
+      <path d="M626 254 L614 266"/><path d="M590 290 L578 302"/>
+    </g>
+  </g>
+</svg>

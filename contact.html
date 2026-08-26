@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>اتصل بنا | فيرست 1 كار</title>
+<meta name="description" content="أرقام تليفونات فيرست 1 كار وواتساب والبريد الإلكتروني ومواعيد العمل — كلمنا في أي وقت.">
+<meta name="theme-color" content="#020617">
+<link rel="icon" href="assets/img/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/base.css">
+<link rel="stylesheet" href="assets/css/components.css">
+<link rel="stylesheet" href="assets/css/pages.css">
+</head>
+<body>
+
+<canvas id="bg-canvas"></canvas>
+<div class="bg-orb g"></div>
+<div class="bg-orb v"></div>
+
+<div id="site-header"></div>
+
+<main>
+  <section class="page-hero">
+    <div class="shell">
+      <span class="eyebrow" data-en="Contact">تواصل معنا</span>
+      <h1 class="grad" data-en="Talk to a human">كلّم حد حقيقي</h1>
+      <p class="lead" data-en="No call centre, no ticket number. Send a message and someone from the showroom answers you.">
+        مفيش كول سنتر ولا رقم تذكرة. ابعت رسالة وحد من المعرض هيرد عليك.
+      </p>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:0">
+    <div class="shell">
+      <div class="contact-grid">
+
+        <!-- ── form ── -->
+        <div class="card reveal">
+          <h3 style="margin-bottom:.5rem" data-en="Send us your request">ابعت لنا طلبك</h3>
+          <p style="margin-bottom:1.6rem;font-size:.92rem" data-en="Fill this in and it opens WhatsApp with your message ready to send.">
+            املا ده وهيفتح لك واتساب ورسالتك جاهزة للإرسال.
+          </p>
+
+          <form id="enquiry">
+            <div class="field">
+              <label for="f-name" data-en="Your name">اسمك</label>
+              <input id="f-name" name="name" type="text" required
+                     placeholder="مثال: أحمد محمد"
+                     data-en-placeholder="e.g. Ahmed Mohamed">
+            </div>
+
+            <div class="field">
+              <label for="f-phone" data-en="Your phone number">رقم تليفونك</label>
+              <input id="f-phone" name="phone" type="tel" required inputmode="tel"
+                     placeholder="01xxxxxxxxx"
+                     data-en-placeholder="01xxxxxxxxx">
+            </div>
+
+            <div class="field">
+              <label for="f-car" data-en="Which car interests you?">مهتم بأنهي عربية؟</label>
+              <select id="f-car" name="car"></select>
+            </div>
+
+            <div class="field">
+              <label for="f-topic" data-en="What do you need?">محتاج إيه؟</label>
+              <select id="f-topic" name="topic"></select>
+            </div>
+
+            <div class="field">
+              <label for="f-msg" data-en="Anything else? (optional)">أي حاجة تانية؟ (اختياري)</label>
+              <textarea id="f-msg" name="message"
+                        placeholder="اللون المفضل، الميزانية، أو أي سؤال…"
+                        data-en-placeholder="Preferred colour, budget, or any question…"></textarea>
+            </div>
+
+            <button class="btn btn-primary" type="submit" style="width:100%"
+                    data-en="Open WhatsApp with my message">افتح واتساب برسالتي</button>
+          </form>
+        </div>
+
+        <!-- ── details ── -->
+        <div class="reveal" data-delay="1">
+          <div class="card" style="margin-bottom:1.2rem">
+            <h3 style="margin-bottom:.4rem" data-en="Direct lines">خطوط مباشرة</h3>
+            <div id="contact-list"></div>
+          </div>
+
+          <div class="card">
+            <h3 style="margin-bottom:1rem" data-en="Our branches">فروعنا</h3>
+            <div id="branch-list"></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+</main>
+
+<div id="site-footer"></div>
+
+<script src="assets/js/data.js"></script>
+<script src="assets/js/site.js"></script>
+<script src="assets/js/bg.js"></script>
+<script>
+(function () {
+  var c = SITE.contact;
+
+  /* ── select options, rebuilt on language change ── */
+  var TOPICS = [
+    { ar: 'استفسار عن سعر',        en: 'Price enquiry' },
+    { ar: 'حجز تجربة قيادة',       en: 'Book a test drive' },
+    { ar: 'التقسيط وموافقات البنوك', en: 'Financing / bank approval' },
+    { ar: 'التوافر والألوان',       en: 'Availability and colours' },
+    { ar: 'حاجة تانية',            en: 'Something else' }
+  ];
+
+  function fillSelects() {
+    var lang = window.currentLang();
+
+    var carSel = document.getElementById('f-car');
+    var carVal = carSel.value;
+    var opts = ['<option value="">' +
+      (lang === 'ar' ? 'لسه مش محدد / مش متأكد' : 'Not decided yet') + '</option>'];
+    SITE.brands.forEach(function (b) {
+      if (!b.models || !b.models.length) return;
+      opts.push('<optgroup label="' + window.tr(b.name) + '">');
+      b.models.forEach(function (m) {
+        var label = window.tr(b.name) + ' ' + window.tr(m.name);
+        opts.push('<option value="' + label + '">' + label + '</option>');
+      });
+      opts.push('</optgroup>');
+    });
+    carSel.innerHTML = opts.join('');
+    carSel.value = carVal;
+
+    var topicSel = document.getElementById('f-topic');
+    var topicIdx = topicSel.selectedIndex;
+    topicSel.innerHTML = TOPICS.map(function (t) {
+      return '<option value="' + window.tr(t) + '">' + window.tr(t) + '</option>';
+    }).join('');
+    if (topicIdx > -1) topicSel.selectedIndex = topicIdx;
+  }
+
+  /* ── contact details ── */
+  function fillContact() {
+    var lang = window.currentLang();
+    var L = {
+      phone: lang === 'ar' ? 'تليفون' : 'Phone',
+      sales: lang === 'ar' ? 'المبيعات' : 'Sales',
+      wa:    lang === 'ar' ? 'واتساب' : 'WhatsApp',
+      mail:  lang === 'ar' ? 'البريد الإلكتروني' : 'Email',
+      hours: lang === 'ar' ? 'مواعيد العمل' : 'Opening hours'
+    };
+
+    document.getElementById('contact-list').innerHTML =
+      item('📞', L.phone, '<a class="num" href="tel:' + c.phonePrimary.replace(/\s/g,'') + '">' + c.phonePrimary + '</a>') +
+      item('🛒', L.sales, '<a class="num" href="tel:' + c.phoneSales.replace(/\s/g,'') + '">' + c.phoneSales + '</a>') +
+      item('💬', L.wa,    '<a href="https://wa.me/' + c.whatsapp + '" target="_blank" rel="noopener">' +
+                          (lang === 'ar' ? 'ابعت رسالة دلوقتي' : 'Send a message now') + '</a>') +
+      item('✉️', L.mail,  '<a href="mailto:' + c.email + '">' + c.email + '</a>') +
+      item('🕒', L.hours, '<span>' + window.tr(c.hours) + '</span>');
+
+    document.getElementById('branch-list').innerHTML = SITE.branches.map(function (b) {
+      return item('📍', window.tr(b.name),
+        '<span>' + window.tr(b.address) + '</span><br>' +
+        '<a href="' + b.mapUrl + '" target="_blank" rel="noopener">' +
+        (lang === 'ar' ? 'افتح على الخريطة' : 'Open in Maps') + '</a>');
+    }).join('');
+  }
+
+  function item(icon, label, value) {
+    return '<div class="contact-item"><div class="f-icon">' + icon + '</div>' +
+           '<div><b>' + label + '</b>' + value + '</div></div>';
+  }
+
+  /* ── form → WhatsApp ── */
+  document.getElementById('enquiry').addEventListener('submit', function (e) {
+    e.preventDefault();
+    var lang = window.currentLang();
+    var f = e.target;
+
+    var lines = lang === 'ar'
+      ? ['السلام عليكم، أنا ' + f.name.value.trim(),
+         'رقمي: ' + f.phone.value.trim(),
+         f.car.value   ? 'مهتم بـ: ' + f.car.value : '',
+         'الطلب: ' + f.topic.value,
+         f.message.value.trim() ? 'ملاحظات: ' + f.message.value.trim() : '']
+      : ['Hello, my name is ' + f.name.value.trim(),
+         'My number: ' + f.phone.value.trim(),
+         f.car.value   ? 'Interested in: ' + f.car.value : '',
+         'Request: ' + f.topic.value,
+         f.message.value.trim() ? 'Notes: ' + f.message.value.trim() : ''];
+
+    var text = lines.filter(Boolean).join('\n');
+    window.open('https://wa.me/' + c.whatsapp + '?text=' + encodeURIComponent(text), '_blank', 'noopener');
+  });
+
+  function render() { fillSelects(); fillContact(); }
+  document.addEventListener('langchange', render);
+  render();
+})();
+</script>
+</body>
+</html>

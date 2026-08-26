@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>سياراتنا وأسعارها الرسمية | فيرست 1 كار</title>
+<meta name="description" content="كل الماركات والموديلات المتاحة في فيرست 1 كار بالسعر الرسمي المعلن — شيري، جيلي، هافال، هيونداي، شانجان، ميتسوبيشي وأكثر.">
+<meta name="theme-color" content="#020617">
+<link rel="icon" href="assets/img/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/base.css">
+<link rel="stylesheet" href="assets/css/components.css">
+<link rel="stylesheet" href="assets/css/pages.css">
+</head>
+<body>
+
+<canvas id="bg-canvas"></canvas>
+<div class="bg-orb g"></div>
+<div class="bg-orb v"></div>
+
+<div id="site-header"></div>
+
+<main>
+  <section class="page-hero">
+    <div class="shell">
+      <span class="eyebrow" data-en="Our cars">سياراتنا</span>
+      <h1 class="grad" data-en="The official price list">قائمة الأسعار الرسمية</h1>
+      <p class="lead" data-en="Every model we carry, with its official price. One price, published openly — the same number we quote in the showroom.">
+        كل موديل بنتعامل بيه، وجنبه سعره الرسمي. سعر واحد معلن —
+        نفس الرقم اللي بنقوله لك في المعرض.
+      </p>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:0">
+    <div class="shell">
+      <div class="brand-tabs" id="brand-tabs"></div>
+      <div class="grid grid-3" id="model-grid"></div>
+
+      <div class="price-note reveal">
+        <strong data-en="A note on prices:">ملاحظة عن الأسعار:</strong>
+        <span data-en="Prices shown are the official list prices and may change without notice as the market moves. Licensing, plates and insurance are not included. Please confirm the current price and availability with the showroom before you travel to us.">
+          الأسعار المعروضة هي الأسعار الرسمية المعلنة وقابلة للتغيير حسب السوق بدون إشعار مسبق.
+          الترخيص واللوحات والتأمين غير محسوبين في السعر. برجاء التأكد من السعر الحالي والتوافر
+          مع المعرض قبل ما تتحرك لينا.
+        </span>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:0">
+    <div class="shell">
+      <div class="cta-band reveal">
+        <h2 data-en="Not sure which one fits you?">مش عارف أنهي واحدة تناسبك؟</h2>
+        <p class="lead" data-en="Tell us your budget and how you drive, and we will narrow it down to two or three honestly.">
+          قول لنا ميزانيتك وبتستخدم العربية إزاي، وهنضيّقهالك لاتنين أو تلاتة بكل صراحة.
+        </p>
+        <div class="hero-cta">
+          <a class="btn btn-primary" id="cta-wa" href="#" target="_blank" rel="noopener" data-en="Ask on WhatsApp">اسألنا على واتساب</a>
+          <a class="btn btn-ghost" href="finance.html" data-en="See instalment options">شوف نظام التقسيط</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<div id="site-footer"></div>
+
+<script src="assets/js/data.js"></script>
+<script src="assets/js/site.js"></script>
+<script src="assets/js/cars.js"></script>
+<script src="assets/js/bg.js"></script>
+<script>
+  document.getElementById('cta-wa').href = 'https://wa.me/' + SITE.contact.whatsapp;
+</script>
+</body>
+</html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>فروعنا ومواقعنا | فيرست 1 كار</title>
+<meta name="description" content="عناوين فروع فيرست 1 كار وأرقام التليفونات ومواعيد العمل، مع الموقع على خرائط جوجل.">
+<meta name="theme-color" content="#020617">
+<link rel="icon" href="assets/img/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/base.css">
+<link rel="stylesheet" href="assets/css/components.css">
+<link rel="stylesheet" href="assets/css/pages.css">
+</head>
+<body>
+
+<canvas id="bg-canvas"></canvas>
+<div class="bg-orb g"></div>
+<div class="bg-orb v"></div>
+
+<div id="site-header"></div>
+
+<main>
+  <section class="page-hero">
+    <div class="shell">
+      <span class="eyebrow" data-en="Find us">تعالى لنا</span>
+      <h1 class="grad" data-en="Our showrooms">فروعنا</h1>
+      <p class="lead" data-en="Come and see the cars in person. Tap a branch to open it directly in Google Maps.">
+        تعالى شوف العربيات بنفسك. اضغط على أي فرع يفتح لك على خرائط جوجل على طول.
+      </p>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:0">
+    <div class="shell">
+      <div class="grid grid-2" id="branch-grid"></div>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:0">
+    <div class="shell">
+      <div class="cta-band reveal">
+        <h2 data-en="Coming from far away?">جاي من بعيد؟</h2>
+        <p class="lead" data-en="Message us before you travel and we will confirm the car you want is on the floor, ready for you to see.">
+          كلمنا قبل ما تتحرك، وهنأكد لك إن العربية اللي عايزها موجودة في المعرض ومستنياك.
+        </p>
+        <div class="hero-cta">
+          <a class="btn btn-primary" id="cta-wa" href="#" target="_blank" rel="noopener" data-en="Confirm on WhatsApp">أكّد على واتساب</a>
+          <a class="btn btn-ghost" id="cta-tel" href="#" data-en="Call us">اتصل بينا</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<div id="site-footer"></div>
+
+<script src="assets/js/data.js"></script>
+<script src="assets/js/site.js"></script>
+<script src="assets/js/bg.js"></script>
+<script>
+(function () {
+  var grid = document.getElementById('branch-grid');
+
+  function render() {
+    var lang = window.currentLang();
+    grid.innerHTML = SITE.branches.map(function (b, i) {
+      var tel = b.phone.replace(/\s/g, '');
+      return '' +
+        '<article class="card branch-card reveal in"' + (i ? ' data-delay="1"' : '') + '>' +
+          '<div class="branch-map"><div class="pin">📍</div></div>' +
+          '<div class="branch-body">' +
+            '<h3>' + window.tr(b.name) + '</h3>' +
+            '<div class="branch-row"><span>🗺️</span><span>' + window.tr(b.address) + '</span></div>' +
+            '<div class="branch-row"><span>📞</span>' +
+              '<a class="num" href="tel:' + tel + '">' + b.phone + '</a></div>' +
+            '<div class="branch-row"><span>🕒</span><span>' + window.tr(SITE.contact.hours) + '</span></div>' +
+            '<div class="branch-actions">' +
+              '<a class="btn btn-primary" href="' + b.mapUrl + '" target="_blank" rel="noopener">' +
+                (lang === 'ar' ? 'افتح على الخريطة' : 'Open in Maps') + '</a>' +
+              '<a class="btn btn-ghost" href="tel:' + tel + '">' +
+                (lang === 'ar' ? 'اتصل بالفرع' : 'Call branch') + '</a>' +
+            '</div>' +
+          '</div>' +
+        '</article>';
+    }).join('');
+  }
+
+  document.addEventListener('langchange', render);
+  render();
+
+  document.getElementById('cta-wa').href  = 'https://wa.me/' + SITE.contact.whatsapp;
+  document.getElementById('cta-tel').href = 'tel:' + SITE.contact.phonePrimary.replace(/\s/g, '');
+})();
+</script>
+</body>
+</html>

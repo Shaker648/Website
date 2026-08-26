@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>التقسيط وموافقات البنوك | فيرست 1 كار</title>
+<meta name="description" content="نظام التقسيط في فيرست 1 كار — بنقدّم طلبك لأكتر من بنك في نفس الوقت وبنتابع كل الموافقات لحد ما توصل لأحسن عرض.">
+<meta name="theme-color" content="#020617">
+<link rel="icon" href="assets/img/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/base.css">
+<link rel="stylesheet" href="assets/css/components.css">
+<link rel="stylesheet" href="assets/css/pages.css">
+</head>
+<body>
+
+<canvas id="bg-canvas"></canvas>
+<div class="bg-orb g"></div>
+<div class="bg-orb v"></div>
+
+<div id="site-header"></div>
+
+<main>
+  <section class="page-hero">
+    <div class="shell">
+      <span class="eyebrow" data-en="Financing">التقسيط</span>
+      <h1 class="grad" data-en="More than one bank. At the same time.">أكتر من بنك. في نفس الوقت.</h1>
+      <p class="lead" data-en="Most showrooms send your papers to one bank and wait. We send them to several at once, follow every one of them up, and bring you back all the answers — so you choose, not the queue.">
+        أغلب المعارض بتبعت ورقك لبنك واحد وتستنى. إحنا بنبعته لأكتر من بنك في نفس الوقت،
+        وبنتابعهم كلهم، وبنرجّع لك كل الردود — عشان أنت اللي تختار، مش الدور.
+      </p>
+    </div>
+  </section>
+
+  <!-- ═══ HOW IT WORKS ═══ -->
+  <section class="section" style="padding-top:0">
+    <div class="shell">
+      <div class="section-head reveal">
+        <span class="eyebrow" data-en="How it works">إزاي بتشتغل</span>
+        <h2 data-en="Five steps, and we handle four of them">خمس خطوات، إحنا بنعمل منهم أربعة</h2>
+      </div>
+
+      <div class="steps">
+        <div class="step reveal">
+          <h3 data-en="You pick the car">أنت تختار العربية</h3>
+          <p data-en="Choose the model, the trim and the colour. We tell you the official price and what down payment the banks usually want on it.">
+            اختار الموديل والفئة واللون. وإحنا نقول لك السعر الرسمي والمقدم اللي البنوك عادةً بتطلبه عليه.
+          </p>
+        </div>
+
+        <div class="step reveal" data-delay="1">
+          <h3 data-en="You hand in your papers once">تسلّم ورقك مرة واحدة</h3>
+          <p data-en="One set of documents covers every bank. You do not fill the same forms five times.">
+            مجموعة أوراق واحدة بتكفّي كل البنوك. مش هتملا نفس الاستمارة خمس مرات.
+          </p>
+        </div>
+
+        <div class="step reveal" data-delay="2">
+          <h3 data-en="We file with several banks at once">بنقدّم لأكتر من بنك مع بعض</h3>
+          <p data-en="Your request goes out to multiple banks in parallel, each with the down payment that suits it — not one after the other.">
+            طلبك بيروح لأكتر من بنك بالتوازي، كل واحد بالمقدم اللي يناسبه — مش واحد ورا التاني.
+          </p>
+        </div>
+
+        <div class="step reveal" data-delay="3">
+          <h3 data-en="We chase every answer">بنتابع كل رد</h3>
+          <p data-en="We follow each bank up until it gives a clear yes or no, and we tell you where each one stands.">
+            بنفضل ورا كل بنك لحد ما يدّي رد واضح بالموافقة أو الرفض، وبنقول لك كل واحد واقف فين.
+          </p>
+        </div>
+
+        <div class="step reveal" data-delay="4">
+          <h3 data-en="You choose and drive away">أنت تختار وتستلم</h3>
+          <p data-en="Compare the approvals side by side — down payment, monthly instalment, term — and take the one that suits you.">
+            قارن الموافقات جنب بعض — المقدم والقسط الشهري والمدة — وخد اللي يناسبك.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ BANKS ═══ -->
+  <section class="section" style="padding-top:0">
+    <div class="shell">
+      <div class="section-head center reveal">
+        <span class="eyebrow" data-en="Partner banks">البنوك الشريكة</span>
+        <h2 data-en="Who we file with">بنقدّم لمين</h2>
+        <p class="lead" data-en="The exact list available to you depends on your papers and the car — we will tell you honestly which ones are worth filing with.">
+          القائمة المتاحة لك بالظبط بتعتمد على ورقك وعلى العربية —
+          وإحنا هنقول لك بصراحة مين فيهم يستاهل نقدّم له.
+        </p>
+      </div>
+      <div class="bank-grid" id="bank-grid"></div>
+    </div>
+  </section>
+
+  <!-- ═══ DOCUMENTS ═══ -->
+  <section class="section" style="padding-top:0">
+    <div class="shell">
+      <div class="section-head reveal">
+        <span class="eyebrow" data-en="What to bring">اللي محتاج تجيبه</span>
+        <h2 data-en="The usual paperwork">الأوراق المعتادة</h2>
+        <p class="lead" data-en="Banks differ slightly, but this covers almost every case. Bring what you have and we will tell you what is missing.">
+          البنوك بتختلف شوية عن بعض، بس ده بيغطي أغلب الحالات.
+          هات اللي معاك وإحنا نقول لك الناقص إيه.
+        </p>
+      </div>
+
+      <div class="grid grid-3">
+        <article class="card reveal">
+          <div class="f-icon">🪪</div>
+          <h3 data-en="Proof of identity">إثبات الشخصية</h3>
+          <p data-en="A valid national ID, and a copy of it.">بطاقة رقم قومي سارية، وصورة منها.</p>
+        </article>
+        <article class="card reveal" data-delay="1">
+          <div class="f-icon">💼</div>
+          <h3 data-en="Proof of income">إثبات الدخل</h3>
+          <p data-en="A recent HR letter or salary certificate if you are employed, or your commercial register and tax card if you run a business.">
+            خطاب أو مفردات مرتب حديثة لو موظف، أو سجل تجاري وبطاقة ضريبية لو صاحب نشاط.
+          </p>
+        </article>
+        <article class="card reveal" data-delay="2">
+          <div class="f-icon">🏠</div>
+          <h3 data-en="Proof of address">إثبات محل السكن</h3>
+          <p data-en="A recent utility bill in your name — electricity, gas or landline.">
+            فاتورة مرافق حديثة باسمك — كهرباء أو غاز أو تليفون أرضي.
+          </p>
+        </article>
+        <article class="card reveal">
+          <div class="f-icon">🏦</div>
+          <h3 data-en="Bank statement">كشف حساب بنكي</h3>
+          <p data-en="Usually the last three to six months, depending on the bank.">
+            عادةً آخر تلات لست شهور، على حسب البنك.
+          </p>
+        </article>
+        <article class="card reveal" data-delay="1">
+          <div class="f-icon">💵</div>
+          <h3 data-en="The down payment">المقدم</h3>
+          <p data-en="The percentage differs by bank and by car. We will tell you the realistic range for your case before you commit to anything.">
+            النسبة بتختلف من بنك لبنك ومن عربية لعربية.
+            هنقول لك المدى الواقعي لحالتك قبل ما تلتزم بأي حاجة.
+          </p>
+        </article>
+        <article class="card reveal" data-delay="2">
+          <div class="f-icon">📄</div>
+          <h3 data-en="Anything extra">أي حاجة زيادة</h3>
+          <p data-en="Some banks ask for a guarantor or extra paperwork. If yours does, we will tell you up front — not after you have waited two weeks.">
+            بعض البنوك بتطلب ضامن أو أوراق إضافية. لو ده حصل، هنقول لك من الأول —
+            مش بعد ما تستنى أسبوعين.
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ CTA ═══ -->
+  <section class="section" style="padding-top:0">
+    <div class="shell">
+      <div class="cta-band reveal">
+        <h2 data-en="Start your request today">ابدأ طلبك النهارده</h2>
+        <p class="lead" data-en="Send us the car you want and roughly what you can put down. We will tell you where you stand before you fill in a single form.">
+          ابعت لنا العربية اللي عايزها وتقريباً قادر تدفع مقدم كام.
+          هنقول لك أنت واقف فين قبل ما تملا ورقة واحدة.
+        </p>
+        <div class="hero-cta">
+          <a class="btn btn-primary" id="cta-wa" href="#" target="_blank" rel="noopener" data-en="Start on WhatsApp">ابدأ على واتساب</a>
+          <a class="btn btn-ghost" href="cars.html" data-en="Browse the cars first">شوف العربيات الأول</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<div id="site-footer"></div>
+
+<script src="assets/js/data.js"></script>
+<script src="assets/js/site.js"></script>
+<script src="assets/js/bg.js"></script>
+<script>
+(function () {
+  var grid = document.getElementById('bank-grid');
+  function render() {
+    grid.innerHTML = SITE.banks.map(function (b) {
+      return '<div class="bank">' + window.tr(b) + '</div>';
+    }).join('');
+  }
+  document.addEventListener('langchange', render);
+  render();
+
+  var msg = 'السلام عليكم، حابب أستفسر عن التقسيط.';
+  document.getElementById('cta-wa').href =
+    'https://wa.me/' + SITE.contact.whatsapp + '?text=' + encodeURIComponent(msg);
+})();
+</script>
+</body>
+</html>
