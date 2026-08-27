@@ -26,8 +26,7 @@ const SITE = {
 
   /* ── Contact ─────────────────────────────────────────────────────────── */
   contact: {
-    /* the number used for every WhatsApp button on the site — digits only,
-       international format, no "+".  ⚠ confirm this line has WhatsApp on it */
+    /* every WhatsApp button on the site points here — confirmed line */
     whatsapp: "201117550080",
 
     /* sales hotlines, shown as a grid on the contact page */
@@ -37,7 +36,7 @@ const SITE = {
       "01110070437", "01110070432", "01110067528"
     ],
 
-    email: "info@first1car.net",                       // TODO confirm
+    email: "admin@first1car.net",
 
     hours: {
       ar: "يومياً من ١٠ صباحاً حتى ١١ مساءً",
@@ -118,8 +117,9 @@ const SITE = {
       lat: 30.2880449, lng: 31.7497728
     },
     {
+      /* address and phone stay out until the branch actually opens */
       name:    { ar: "فرع جوزيف تيتو", en: "Joseph Tito" },
-      address: { ar: "شارع جوزيف تيتو، القاهرة", en: "Joseph Tito St, Cairo" },
+      address: null,
       phones:  [],
       mapUrl:  "",
       comingSoon: true
@@ -234,6 +234,19 @@ const SITE = {
     { key: "contact", ar: "كونتكت", en: "Contact",                      logo: "" },
     { key: "sky", ar: "سكاي", en: "Sky",                          logo: "" }
   ],
+
+  /* ── Photography ─────────────────────────────────────────────────────
+     Each slot takes either a local file (assets/img/cars/exterior.jpg) or a
+     full https:// URL. Leave "" and the page keeps its designed placeholder.
+     A photo that fails to load falls back to the placeholder on its own.    */
+  photos: {
+    exterior:     "",   // home · "من بره"
+    interior:     "",   // home · "من جوه"
+    showroom:     "",   // home · "السعر الرسمي"
+    showroomWide: "",   // about · our story
+    team:         "",   // about · authorised distributor
+    ops:          ""    // about · how we work
+  },
 
   /* ── Body-type labels used by the cars page filter ───────────────────── */
   bodyTypes: {

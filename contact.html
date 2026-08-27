@@ -183,7 +183,8 @@
     document.getElementById('branch-list').innerHTML = SITE.branches.map(function (b) {
       if (b.comingSoon) {
         return item('🚧', window.tr(b.name),
-          '<span>' + (lang === 'ar' ? 'قريباً — الفرع بيتجهز' : 'Opening soon') + '</span>');
+          '<span>' + (lang === 'ar' ? 'قريباً — هنعلن العنوان عند الافتتاح'
+                                    : 'Opening soon — address announced at opening') + '</span>');
       }
       return item('📍', window.tr(b.name),
         '<span>' + esc(window.tr(b.address)) + '</span><br>' +

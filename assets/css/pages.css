@@ -527,3 +527,23 @@ a:hover > .bplate,.marquee-item:hover .bplate{
 .bank-grid{grid-template-columns:repeat(auto-fill,minmax(176px,1fr))}
 .bank-cell{display:flex;align-items:center;justify-content:center}
 .bank-cell .bplate{width:100%;font-size:.9rem;padding:0 .8rem}
+
+/* ══ MODEL CARD ARTWORK ═════════════════════════════════════════════════
+   A body-type silhouette stands in until a real photo is supplied. When a
+   photo is present it sits on top; if it fails to load it removes itself
+   and the silhouette shows through.                                        */
+.sil-wrap{
+  position:absolute;inset:0;display:grid;place-items:center;padding:8% 7%;
+}
+.car-sil{width:100%;height:auto;transition:transform .7s var(--ease)}
+.model-card:hover .car-sil{transform:translateY(-4px) scale(1.04)}
+.model-media > img{
+  position:absolute;inset:0;z-index:1;
+  width:100%;height:100%;object-fit:cover;
+}
+
+/* a supplied photo covers the placeholder underneath it */
+.showcase-photo{
+  position:absolute;inset:0;z-index:2;
+  width:100%;height:100%;object-fit:cover;
+}

@@ -361,6 +361,25 @@
   }
 
 
+
+  /* ── Showcase photography ───────────────────────────────────────────
+     Each .showcase-media carries a data-photo key into SITE.photos. When
+     that slot holds a path or URL the image is laid over the designed
+     placeholder; if it fails to load it removes itself and the
+     placeholder shows through, so a bad URL never leaves a blank panel. */
+  function initPhotos() {
+    document.querySelectorAll('[data-photo]').forEach(function (el) {
+      var src = (SITE.photos || {})[el.dataset.photo];
+      if (!src) return;
+      var img = new Image();
+      img.src = src;
+      img.alt = '';
+      img.className = 'showcase-photo';
+      img.onerror = function () { img.remove(); };
+      el.appendChild(img);
+    });
+  }
+
   /* ── Wire every WhatsApp / phone call-to-action on the page ─────────── */
   function wireCTAs() {
     var c = SITE.contact;
@@ -386,6 +405,7 @@
     initTilt();
     initCounters();
     wireCTAs();
+    initPhotos();
   }
 
   if (document.readyState === 'loading') {

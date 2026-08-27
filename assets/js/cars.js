@@ -128,10 +128,13 @@
         '<article class="card model-card reveal in">' +
           '<div class="model-media">' +
             (body ? '<span class="model-badge">' + esc(body) + '</span>' : '') +
-            '<div class="ph"><div class="ph-inner">' +
-              brandPlate(x.brand, 'sm') +
-              '<small>' + esc(name) + '</small>' +
-            '</div></div>' +
+            (x.model.photo
+              ? '<img src="' + esc(x.model.photo) + '" alt="' + esc(brand + ' ' + name) + '" ' +
+                'onerror="this.remove()">'
+              : '') +
+            '<div class="sil-wrap">' +
+              window.carArt(x.model.body, window.brandInk(x.brand.color)) +
+            '</div>' +
           '</div>' +
           '<div class="model-body">' +
             '<span class="model-brand">' + esc(brand) + '</span>' +
