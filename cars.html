@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>سياراتنا وأسعارها الرسمية | فيرست 1 كار</title>
-<meta name="description" content="كل الماركات والموديلات المتاحة في فيرست 1 كار بالسعر الرسمي المعلن — شيري، جيلي، هافال، هيونداي، شانجان، ميتسوبيشي وأكثر.">
+<title>سياراتنا — كل الماركات والموديلات | فيرست 1 كار</title>
+<meta name="description" content="كل الماركات والموديلات المتاحة في فيرست 1 كار — شيري، هيونداي، هافال، شانجان، جيلي، ميتسوبيشي، جي إيه سي، جيه إم سي، فوتون. موزع معتمد من أكتر من ٣٠ سنة.">
 <meta name="theme-color" content="#020617">
 <link rel="icon" href="assets/img/logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -26,10 +26,10 @@
   <section class="page-hero">
     <div class="shell">
       <span class="eyebrow" data-en="Our cars">سياراتنا</span>
-      <h1 class="grad" data-en="The official price list">قائمة الأسعار الرسمية</h1>
-      <p class="lead" data-en="Every model we carry, with its official price. One price, published openly — the same number we quote in the showroom.">
-        كل موديل بنتعامل بيه، وجنبه سعره الرسمي. سعر واحد معلن —
-        نفس الرقم اللي بنقوله لك في المعرض.
+      <h1 class="grad" data-en="Nine brands. Every model.">تسع ماركات. كل الموديلات.</h1>
+      <p class="lead" data-en="Nine brands we distribute officially, every model and every trim. Tap a brand or a body type to narrow it down.">
+        تسع ماركات إحنا موزعين معتمدين ليها، بكل الموديلات وكل الفئات.
+        اضغط على ماركة أو نوع عربية عشان تضيّق الاختيار.
       </p>
     </div>
   </section>
@@ -37,14 +37,17 @@
   <section class="section" style="padding-top:0">
     <div class="shell">
       <div class="brand-tabs" id="brand-tabs"></div>
+      <div class="filter-row" id="body-filter"></div>
+      <p class="result-count" id="result-count"></p>
       <div class="grid grid-3" id="model-grid"></div>
 
       <div class="price-note reveal">
-        <strong data-en="A note on prices:">ملاحظة عن الأسعار:</strong>
-        <span data-en="Prices shown are the official list prices and may change without notice as the market moves. Licensing, plates and insurance are not included. Please confirm the current price and availability with the showroom before you travel to us.">
-          الأسعار المعروضة هي الأسعار الرسمية المعلنة وقابلة للتغيير حسب السوق بدون إشعار مسبق.
-          الترخيص واللوحات والتأمين غير محسوبين في السعر. برجاء التأكد من السعر الحالي والتوافر
-          مع المعرض قبل ما تتحرك لينا.
+        <strong data-en="Why we do not print prices here:">ليه مش بنكتب الأسعار هنا:</strong>
+        <span data-en="Official prices in this market move faster than any website can keep up with. Rather than leave a number here that is wrong by next week, we quote you today's official price on the phone or on WhatsApp — and it is the same number you will hear in the showroom. Ask about any model and you get an answer in minutes.">
+          الأسعار الرسمية في السوق ده بتتحرك أسرع من أي موقع يقدر يلحقها. بدل ما نسيب رقم
+          هنا يبقى غلط الأسبوع الجاي، بنقول لك السعر الرسمي بتاع النهارده على التليفون أو
+          الواتساب — ونفس الرقم ده هو اللي هتسمعه في المعرض. اسأل عن أي موديل وهيوصلك الرد
+          في دقايق.
         </span>
       </div>
     </div>
@@ -58,7 +61,7 @@
           قول لنا ميزانيتك وبتستخدم العربية إزاي، وهنضيّقهالك لاتنين أو تلاتة بكل صراحة.
         </p>
         <div class="hero-cta">
-          <a class="btn btn-primary" id="cta-wa" href="#" target="_blank" rel="noopener" data-en="Ask on WhatsApp">اسألنا على واتساب</a>
+          <a class="btn btn-primary js-wa" href="#" target="_blank" rel="noopener" data-en="Ask on WhatsApp">اسألنا على واتساب</a>
           <a class="btn btn-ghost" href="finance.html" data-en="See instalment options">شوف نظام التقسيط</a>
         </div>
       </div>
@@ -72,8 +75,5 @@
 <script src="assets/js/site.js"></script>
 <script src="assets/js/cars.js"></script>
 <script src="assets/js/bg.js"></script>
-<script>
-  document.getElementById('cta-wa').href = 'https://wa.me/' + SITE.contact.whatsapp;
-</script>
 </body>
 </html>

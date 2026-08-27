@@ -20,7 +20,7 @@
   .hero-trust{justify-content:center}
 }
 
-.hero h1{margin-bottom:1.35rem;max-width:14ch}
+.hero h1{margin-bottom:1.35rem;max-width:19ch}
 @media (max-width:1000px){.hero h1{max-width:none;margin-inline:auto}}
 .hero h1 .line{display:block;overflow:hidden}
 .hero h1 .line > span{
@@ -380,3 +380,150 @@ html[dir="rtl"] .step:hover{transform:translateX(-4px)}
   font-weight:800;letter-spacing:.05em;margin-bottom:.3rem}
 .tl-item h3{font-size:1.1rem;margin-bottom:.35rem}
 .tl-item p{font-size:.93rem;margin:0}
+
+/* ══ BRAND PLATES ═══════════════════════════════════════════════════════
+   A brand shows either its real logo on a light plate, or — until a logo
+   file is supplied — a typographic plate tinted with the brand's colour.
+   Both are the same size, so the row never reflows when logos arrive.     */
+.bplate{
+  display:inline-flex;align-items:center;justify-content:center;
+  height:52px;padding:0 1.15rem;border-radius:13px;
+  font-family:var(--font-en);font-weight:800;font-size:1.02rem;letter-spacing:-.01em;
+  white-space:nowrap;
+  background:linear-gradient(158deg,rgba(255,255,255,.07),rgba(255,255,255,.02));
+  border:1px solid var(--bp-line,rgba(255,255,255,.14));
+  color:var(--bp-ink,#e2e8f0);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.06);
+  transition:transform var(--tr),border-color var(--tr),box-shadow var(--tr);
+}
+.bplate.img{background:#fff;padding:0 .85rem;border-color:rgba(255,255,255,.2)}
+.bplate.img img{max-height:34px;max-width:112px;width:auto;object-fit:contain}
+.bplate.sm{height:40px;font-size:.88rem;padding:0 .9rem;border-radius:11px}
+.bplate.sm.img img{max-height:26px;max-width:88px}
+.bplate.lg{height:64px;font-size:1.3rem;padding:0 1.5rem;border-radius:16px}
+.bplate.lg.img img{max-height:42px;max-width:140px}
+
+a:hover > .bplate,.marquee-item:hover .bplate{
+  transform:translateY(-3px);
+  border-color:var(--bp-line,rgba(255,255,255,.3));
+  box-shadow:0 12px 30px -14px var(--bp-glow,rgba(255,255,255,.3));
+}
+
+/* the marquee carries plates now, not text */
+.marquee-item{padding:0 clamp(.9rem,2vw,1.7rem)}
+
+/* ══ TRIM CHIPS ═════════════════════════════════════════════════════════ */
+.trims{display:flex;flex-wrap:wrap;gap:.34rem;margin-top:.2rem}
+.trim{
+  font-family:var(--font-en);
+  font-size:.72rem;font-weight:600;line-height:1;
+  padding:.36rem .6rem;border-radius:7px;
+  background:rgba(255,255,255,.05);border:1px solid var(--border);
+  color:var(--muted);white-space:nowrap;
+}
+.trim-count{
+  font-size:.72rem;font-weight:700;color:var(--faint);
+  align-self:center;padding-inline-start:.15rem;
+}
+
+/* ══ FILTER BARS ════════════════════════════════════════════════════════ */
+.filter-row{
+  display:flex;gap:.5rem;flex-wrap:wrap;justify-content:center;align-items:center;
+  margin-bottom:1rem;
+}
+.filter-row .label{
+  font-size:.74rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--faint);margin-inline-end:.35rem;
+}
+.chip{
+  padding:.5rem 1.05rem;border-radius:999px;cursor:pointer;
+  background:rgba(255,255,255,.04);border:1px solid var(--border);
+  font-weight:700;font-size:.86rem;color:var(--muted);
+  transition:all var(--tr);
+}
+.chip:hover{color:var(--text);border-color:var(--border-hi)}
+.chip.active{
+  background:linear-gradient(135deg,var(--violet-2),var(--violet));
+  color:#fff;border-color:transparent;
+  box-shadow:0 10px 26px -12px rgba(147,51,234,.8);
+}
+.result-count{
+  text-align:center;font-size:.86rem;color:var(--faint);font-weight:600;
+  margin-bottom:clamp(1.6rem,3vw,2.4rem);
+}
+
+/* brand tabs carry a plate-tinted dot */
+.brand-tab.active{
+  background:linear-gradient(135deg,var(--green),#16a34a);color:#04140a;border-color:transparent;
+}
+
+/* ══ PERKS STRIP ════════════════════════════════════════════════════════ */
+.perks{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:.9rem;
+}
+@media (max-width:820px){.perks{grid-template-columns:repeat(2,1fr)}}
+.perk{
+  display:flex;align-items:center;gap:.85rem;
+  padding:1.05rem 1.2rem;border-radius:var(--r);
+  background:linear-gradient(150deg,rgba(34,197,94,.1),rgba(147,51,234,.07));
+  border:1px solid rgba(34,197,94,.24);
+}
+.perk span{font-size:1.5rem;flex-shrink:0;line-height:1}
+.perk b{font-size:.95rem;font-weight:700;line-height:1.4}
+
+/* ══ HOTLINE GRID ═══════════════════════════════════════════════════════ */
+.lines{display:grid;grid-template-columns:repeat(auto-fill,minmax(158px,1fr));gap:.55rem}
+.tel-line{
+  display:flex;align-items:center;justify-content:center;gap:.45rem;
+  padding:.78rem .6rem;border-radius:11px;
+  background:var(--surface-solid);border:1px solid var(--border);
+  font-family:var(--font-en);font-weight:700;font-size:.94rem;
+  letter-spacing:.01em;direction:ltr;
+  transition:all var(--tr);
+}
+.tel-line:hover{
+  border-color:var(--green);color:var(--green-2);transform:translateY(-2px);
+  background:var(--green-dim);
+}
+
+/* ══ COMING SOON BRANCH ═════════════════════════════════════════════════ */
+.branch-card.soon{opacity:.9;border-style:dashed}
+.branch-card.soon .branch-map{filter:grayscale(.55)}
+.soon-tag{
+  position:absolute;top:.9rem;inset-inline-end:.9rem;z-index:3;
+  padding:.34rem .85rem;border-radius:999px;
+  font-size:.72rem;font-weight:800;
+  background:rgba(147,51,234,.24);border:1px solid rgba(147,51,234,.5);
+  color:#d8b4fe;backdrop-filter:blur(10px);
+}
+.main-tag{
+  position:absolute;top:.9rem;inset-inline-end:.9rem;z-index:3;
+  padding:.34rem .85rem;border-radius:999px;
+  font-size:.72rem;font-weight:800;
+  background:rgba(34,197,94,.22);border:1px solid rgba(34,197,94,.5);
+  color:#86efac;backdrop-filter:blur(10px);
+}
+
+/* ══ CREDENTIAL BAR (30 years / 100k customers / 48h) ═══════════════════ */
+.creds{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:1px;
+  border-radius:var(--r-lg);overflow:hidden;border:1px solid var(--border);
+  background:var(--border);
+}
+@media (max-width:720px){.creds{grid-template-columns:1fr}}
+.cred{
+  padding:clamp(1.5rem,3vw,2.2rem) 1.4rem;text-align:center;
+  background:linear-gradient(160deg,rgba(15,23,42,.92),rgba(7,13,28,.86));
+}
+.cred b{
+  display:block;font-size:clamp(1.9rem,4.4vw,2.9rem);font-weight:800;line-height:1;
+  margin-bottom:.4rem;
+  background:linear-gradient(135deg,var(--green-2),var(--violet-2));
+  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+}
+.cred small{display:block;font-size:.88rem;color:var(--muted);font-weight:600}
+
+/* banks render as plates in a tidy grid */
+.bank-grid{grid-template-columns:repeat(auto-fill,minmax(176px,1fr))}
+.bank-cell{display:flex;align-items:center;justify-content:center}
+.bank-cell .bplate{width:100%;font-size:.9rem;padding:0 .8rem}

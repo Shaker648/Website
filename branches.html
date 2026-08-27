@@ -27,8 +27,9 @@
     <div class="shell">
       <span class="eyebrow" data-en="Find us">تعالى لنا</span>
       <h1 class="grad" data-en="Our showrooms">فروعنا</h1>
-      <p class="lead" data-en="Come and see the cars in person. Tap a branch to open it directly in Google Maps.">
-        تعالى شوف العربيات بنفسك. اضغط على أي فرع يفتح لك على خرائط جوجل على طول.
+      <p class="lead" data-en="Five showrooms open daily from 10 AM to 11 PM, with a sixth on the way. Tap any branch to open it in Google Maps.">
+        خمس صالات عرض فاتحة يومياً من ١٠ صباحاً لـ ١١ مساءً، وفرع سادس في الطريق.
+        اضغط على أي فرع يفتح لك على خرائط جوجل على طول.
       </p>
     </div>
   </section>
@@ -47,8 +48,8 @@
           كلمنا قبل ما تتحرك، وهنأكد لك إن العربية اللي عايزها موجودة في المعرض ومستنياك.
         </p>
         <div class="hero-cta">
-          <a class="btn btn-primary" id="cta-wa" href="#" target="_blank" rel="noopener" data-en="Confirm on WhatsApp">أكّد على واتساب</a>
-          <a class="btn btn-ghost" id="cta-tel" href="#" data-en="Call us">اتصل بينا</a>
+          <a class="btn btn-primary js-wa" href="#" target="_blank" rel="noopener" data-en="Confirm on WhatsApp">أكّد على واتساب</a>
+          <a class="btn btn-ghost js-tel" href="#" data-en="Call us">اتصل بينا</a>
         </div>
       </div>
     </div>
@@ -63,24 +64,63 @@
 <script>
 (function () {
   var grid = document.getElementById('branch-grid');
+  var esc  = window.esc;
 
   function render() {
     var lang = window.currentLang();
-    grid.innerHTML = SITE.branches.map(function (b, i) {
-      var tel = b.phone.replace(/\s/g, '');
+    var hrs  = window.tr(SITE.contact.hours);
+
+    grid.innerHTML = SITE.branches.map(function (b) {
+      /* ── a branch that has not opened yet ── */
+      if (b.comingSoon) {
+        return '' +
+          '<article class="card branch-card soon reveal in">' +
+            '<div class="branch-map">' +
+              '<span class="soon-tag">' + (lang === 'ar' ? 'قريباً' : 'Opening soon') + '</span>' +
+              '<div class="pin">🚧</div>' +
+            '</div>' +
+            '<div class="branch-body">' +
+              '<h3>' + esc(window.tr(b.name)) + '</h3>' +
+              '<div class="branch-row"><span>🗺️</span><span>' +
+                esc(window.tr(b.address)) + '</span></div>' +
+              '<div class="branch-row"><span>📅</span><span>' +
+                (lang === 'ar'
+                  ? 'الفرع بيتجهز دلوقتي — تابعنا عشان تعرف ميعاد الافتتاح.'
+                  : 'This showroom is being fitted out — follow us for the opening date.') +
+              '</span></div>' +
+              '<div class="branch-actions">' +
+                '<a class="btn btn-ghost" href="' + esc(SITE.social.facebook) + '" ' +
+                   'target="_blank" rel="noopener">' +
+                  (lang === 'ar' ? 'تابعنا للافتتاح' : 'Follow for the opening') + '</a>' +
+              '</div>' +
+            '</div>' +
+          '</article>';
+      }
+
+      /* ── an open showroom ── */
+      var phoneRows = b.phones.map(function (n) {
+        return '<div class="branch-row"><span>📞</span>' +
+               '<a class="num" href="tel:' + esc(n) + '">' + esc(n) + '</a></div>';
+      }).join('');
+
       return '' +
-        '<article class="card branch-card reveal in"' + (i ? ' data-delay="1"' : '') + '>' +
-          '<div class="branch-map"><div class="pin">📍</div></div>' +
+        '<article class="card branch-card reveal in">' +
+          '<div class="branch-map">' +
+            (b.main ? '<span class="main-tag">' +
+              (lang === 'ar' ? 'الفرع الرئيسي' : 'Main branch') + '</span>' : '') +
+            '<div class="pin">📍</div>' +
+          '</div>' +
           '<div class="branch-body">' +
-            '<h3>' + window.tr(b.name) + '</h3>' +
-            '<div class="branch-row"><span>🗺️</span><span>' + window.tr(b.address) + '</span></div>' +
-            '<div class="branch-row"><span>📞</span>' +
-              '<a class="num" href="tel:' + tel + '">' + b.phone + '</a></div>' +
-            '<div class="branch-row"><span>🕒</span><span>' + window.tr(SITE.contact.hours) + '</span></div>' +
+            '<h3>' + esc(window.tr(b.name)) + '</h3>' +
+            '<div class="branch-row"><span>🗺️</span><span>' +
+              esc(window.tr(b.address)) + '</span></div>' +
+            phoneRows +
+            '<div class="branch-row"><span>🕒</span><span>' + esc(hrs) + '</span></div>' +
             '<div class="branch-actions">' +
-              '<a class="btn btn-primary" href="' + b.mapUrl + '" target="_blank" rel="noopener">' +
+              '<a class="btn btn-primary" href="' + esc(b.mapUrl) + '" ' +
+                 'target="_blank" rel="noopener">' +
                 (lang === 'ar' ? 'افتح على الخريطة' : 'Open in Maps') + '</a>' +
-              '<a class="btn btn-ghost" href="tel:' + tel + '">' +
+              '<a class="btn btn-ghost" href="tel:' + esc(b.phones[0]) + '">' +
                 (lang === 'ar' ? 'اتصل بالفرع' : 'Call branch') + '</a>' +
             '</div>' +
           '</div>' +
@@ -90,9 +130,6 @@
 
   document.addEventListener('langchange', render);
   render();
-
-  document.getElementById('cta-wa').href  = 'https://wa.me/' + SITE.contact.whatsapp;
-  document.getElementById('cta-tel').href = 'tel:' + SITE.contact.phonePrimary.replace(/\s/g, '');
 })();
 </script>
 </body>

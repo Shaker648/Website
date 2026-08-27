@@ -27,9 +27,9 @@
     <div class="shell">
       <span class="eyebrow" data-en="Financing">التقسيط</span>
       <h1 class="grad" data-en="More than one bank. At the same time.">أكتر من بنك. في نفس الوقت.</h1>
-      <p class="lead" data-en="Most showrooms send your papers to one bank and wait. We send them to several at once, follow every one of them up, and bring you back all the answers — so you choose, not the queue.">
-        أغلب المعارض بتبعت ورقك لبنك واحد وتستنى. إحنا بنبعته لأكتر من بنك في نفس الوقت،
-        وبنتابعهم كلهم، وبنرجّع لك كل الردود — عشان أنت اللي تختار، مش الدور.
+      <p class="lead" data-en="Most showrooms send your papers to one bank and wait. We send them to fourteen at once, chase every one, and bring you back all the answers — then licensing and delivery inside 48 hours.">
+        أغلب المعارض بتبعت ورقك لبنك واحد وتستنى. إحنا بنبعته لأربعتاشر جهة في نفس الوقت،
+        وبنتابعهم كلهم، وبنرجّع لك كل الردود — وبعدين الترخيص والتسليم خلال ٤٨ ساعة.
       </p>
     </div>
   </section>
@@ -59,8 +59,8 @@
 
         <div class="step reveal" data-delay="2">
           <h3 data-en="We file with several banks at once">بنقدّم لأكتر من بنك مع بعض</h3>
-          <p data-en="Your request goes out to multiple banks in parallel, each with the down payment that suits it — not one after the other.">
-            طلبك بيروح لأكتر من بنك بالتوازي، كل واحد بالمقدم اللي يناسبه — مش واحد ورا التاني.
+          <p data-en="Your request goes out to all fourteen in parallel, each with the down payment that suits it — not one after the other.">
+            طلبك بيروح للأربعتاشر بالتوازي، كل واحد بالمقدم اللي يناسبه — مش واحد ورا التاني.
           </p>
         </div>
 
@@ -86,10 +86,10 @@
     <div class="shell">
       <div class="section-head center reveal">
         <span class="eyebrow" data-en="Partner banks">البنوك الشريكة</span>
-        <h2 data-en="Who we file with">بنقدّم لمين</h2>
-        <p class="lead" data-en="The exact list available to you depends on your papers and the car — we will tell you honestly which ones are worth filing with.">
-          القائمة المتاحة لك بالظبط بتعتمد على ورقك وعلى العربية —
-          وإحنا هنقول لك بصراحة مين فيهم يستاهل نقدّم له.
+        <h2 data-en="Fourteen banks and finance houses">أربعتاشر بنك وجهة تمويل</h2>
+        <p class="lead" data-en="This is the full list we are set up with. Which of them is worth filing your papers with depends on your case — and we will tell you that honestly, before you fill in anything.">
+          دي القائمة الكاملة اللي إحنا متعاقدين معاها. مين فيهم يستاهل نقدّم له ورقك
+          بيعتمد على حالتك — وده اللي هنقوله لك بصراحة، قبل ما تملا أي حاجة.
         </p>
       </div>
       <div class="bank-grid" id="bank-grid"></div>
@@ -165,7 +165,7 @@
           هنقول لك أنت واقف فين قبل ما تملا ورقة واحدة.
         </p>
         <div class="hero-cta">
-          <a class="btn btn-primary" id="cta-wa" href="#" target="_blank" rel="noopener" data-en="Start on WhatsApp">ابدأ على واتساب</a>
+          <a class="btn btn-primary js-wa" href="#" target="_blank" rel="noopener" data-en="Start on WhatsApp">ابدأ على واتساب</a>
           <a class="btn btn-ghost" href="cars.html" data-en="Browse the cars first">شوف العربيات الأول</a>
         </div>
       </div>
@@ -183,15 +183,11 @@
   var grid = document.getElementById('bank-grid');
   function render() {
     grid.innerHTML = SITE.banks.map(function (b) {
-      return '<div class="bank">' + window.tr(b) + '</div>';
+      return '<div class="bank-cell">' + window.brandPlate(b) + '</div>';
     }).join('');
   }
   document.addEventListener('langchange', render);
   render();
-
-  var msg = 'السلام عليكم، حابب أستفسر عن التقسيط.';
-  document.getElementById('cta-wa').href =
-    'https://wa.me/' + SITE.contact.whatsapp + '?text=' + encodeURIComponent(msg);
 })();
 </script>
 </body>

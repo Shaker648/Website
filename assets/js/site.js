@@ -60,6 +60,77 @@
     applyLang();
   }
 
+
+  /* ── Brand colour helpers ───────────────────────────────────────────── */
+  /* Real brand colours (Hyundai navy, GAC black) vanish on a near-black
+     page, so a brand's ink is lightened until it is legible, while the
+     original hue still identifies the brand.                              */
+  function hex2rgb(h) {
+    h = h.replace('#', '');
+    if (h.length === 3) h = h[0]+h[0]+h[1]+h[1]+h[2]+h[2];
+    return [parseInt(h.slice(0,2),16), parseInt(h.slice(2,4),16), parseInt(h.slice(4,6),16)];
+  }
+  function luminance(hex) {
+    return hex2rgb(hex).map(function (v) {
+      v /= 255;
+      return v <= 0.03928 ? v/12.92 : Math.pow((v+0.055)/1.055, 2.4);
+    }).reduce(function (a, v, i) { return a + v * [0.2126,0.7152,0.0722][i]; }, 0);
+  }
+  function lighten(hex, amt) {
+    return '#' + hex2rgb(hex).map(function (v) {
+      return Math.round(v + (255 - v) * amt).toString(16).padStart(2,'0');
+    }).join('');
+  }
+  function brandInk(hex) {
+    var c = hex, guard = 0;
+    while (luminance(c) < 0.42 && guard++ < 24) c = lighten(c, 0.13);
+    return c;
+  }
+  window.brandInk = brandInk;
+
+  function rgba(hex, a) { return 'rgba(' + hex2rgb(hex).join(',') + ',' + a + ')'; }
+
+  /**
+   * A brand's mark. Renders the real logo when `logo` is set; if that image
+   * fails to load (bad URL, offline host) the onerror handler swaps in the
+   * typographic plate, so the page never shows a broken image.
+   * @param {object} brand  entry from SITE.brands or SITE.banks
+   * @param {string} size   '' | 'sm' | 'lg'
+   */
+  function brandPlate(brand, size) {
+    // A plate stands in for a logo, so it always carries the Latin name —
+    // that is how the real marks read, in either language.
+    var pair  = brand.name || brand;
+    var label = pair.en || tr(pair);
+    var color = brand.color || '#94a3b8';
+    var ink   = brandInk(color);
+    var style = '--bp-ink:' + ink + ';--bp-line:' + rgba(ink, .34) +
+                ';--bp-glow:' + rgba(ink, .5);
+    var cls   = 'bplate' + (size ? ' ' + size : '');
+    var plain = '<span class="' + cls + '" style="' + style + '">' +
+                esc(label) + '</span>';
+
+    if (!brand.logo) return plain;
+
+    // data-fallback holds the plate markup the onerror handler swaps in
+    return '<span class="' + cls + ' img" data-fallback="' +
+             esc(plain).replace(/"/g, '&quot;') + '">' +
+             // NOT lazy: a lazy image below the fold never loads, so onerror
+             // never fires and the plate would sit there empty
+             '<img src="' + esc(brand.logo) + '" alt="' + esc(label) + '" ' +
+             'onerror="(function(i){var p=i.parentNode;' +
+             'p.outerHTML=p.getAttribute(\'data-fallback\');})(this)">' +
+           '</span>';
+  }
+  window.brandPlate = brandPlate;
+
+  function esc(s) {
+    return String(s).replace(/[&<>"']/g, function (c) {
+      return { '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' }[c];
+    });
+  }
+  window.esc = esc;
+
   /* ── Header ─────────────────────────────────────────────────────────── */
   var NAV = [
     { href: 'index.html',    ar: 'الرئيسية', en: 'Home' },
@@ -145,7 +216,7 @@
   function buildFooter() {
     var host = document.getElementById('site-footer');
     if (!host) return;
-    var c = SITE.contact, s = SITE.social;
+    var c = SITE.contact, s = SITE.social, lang = window.currentLang();
 
     var socials = Object.keys(ICONS).filter(function (k) { return s[k]; }).map(function (k) {
       return '<a href="' + s[k] + '" target="_blank" rel="noopener" aria-label="' + k + '">' +
@@ -157,8 +228,13 @@
     }).join('');
 
     var branchLinks = SITE.branches.map(function (b) {
+      if (b.comingSoon) {
+        // name and the "soon" note are separate nodes, so each translates on its own
+        return '<p><span data-en="' + esc(b.name.en) + '">' + esc(b.name.ar) + '</span>' +
+               '<span class="soon-note" data-en=" · soon"> · قريباً</span></p>';
+      }
       return '<a href="' + b.mapUrl + '" target="_blank" rel="noopener" data-en="' +
-             b.name.en + '">' + b.name.ar + '</a>';
+             esc(b.name.en) + '">' + esc(b.name.ar) + '</a>';
     }).join('');
 
     host.innerHTML =
@@ -173,15 +249,19 @@
           '<div class="footer-col"><h4 data-en="Explore">تصفّح</h4>' + links + '</div>' +
           '<div class="footer-col"><h4 data-en="Branches">فروعنا</h4>' + branchLinks + '</div>' +
           '<div class="footer-col"><h4 data-en="Get in touch">تواصل معنا</h4>' +
-            '<a href="tel:' + c.phonePrimary.replace(/\s/g, '') + '" class="num">' + c.phonePrimary + '</a>' +
-            '<a href="mailto:' + c.email + '">' + c.email + '</a>' +
-            '<p data-en="' + c.hours.en + '">' + c.hours.ar + '</p>' +
+            c.salesLines.slice(0, 3).map(function (n) {
+              return '<a href="tel:' + n + '" class="num">' + n + '</a>';
+            }).join('') +
+            '<a href="contact.html" data-en="All ' + c.salesLines.length + ' lines">' +
+              'كل الأرقام (' + c.salesLines.length + ')</a>' +
+            '<p data-en="' + esc(c.hours.en) + '">' + esc(c.hours.ar) + '</p>' +
           '</div>' +
         '</div>' +
         '<div class="footer-bottom">' +
           '<span data-en="© ' + new Date().getFullYear() + ' First 1 Car. All rights reserved.">' +
             '© ' + new Date().getFullYear() + ' فيرست 1 كار. جميع الحقوق محفوظة.</span>' +
-          '<span data-en="Official prices — updated regularly">أسعار رسمية — يتم تحديثها أولاً بأول</span>' +
+          '<span class="num" data-en="Tax registration ' + SITE.company.taxId + '">' +
+            'سجل ضريبي ' + SITE.company.taxId + '</span>' +
         '</div>' +
       '</div></footer>' +
       '<a class="wa-float" href="https://wa.me/' + c.whatsapp + '" target="_blank" rel="noopener" ' +
@@ -270,15 +350,29 @@
 
     function render() {
       var one = SITE.brands.map(function (b) {
-        return '<div class="marquee-item">' +
-                 '<span class="dot" style="background:' + b.color + '"></span>' +
-                 tr(b.name) +
-               '</div>';
+        return '<a class="marquee-item" href="cars.html#' + b.id + '">' +
+                 brandPlate(b) +
+               '</a>';
       }).join('');
       host.innerHTML = one + one;          // doubled so the loop is seamless
     }
     render();
     document.addEventListener('langchange', render);
+  }
+
+
+  /* ── Wire every WhatsApp / phone call-to-action on the page ─────────── */
+  function wireCTAs() {
+    var c = SITE.contact;
+    document.querySelectorAll('.js-wa').forEach(function (a) {
+      var msg = a.dataset.waMsg;
+      a.href = 'https://wa.me/' + c.whatsapp + (msg ? '?text=' + encodeURIComponent(msg) : '');
+      a.target = '_blank';
+      a.rel = 'noopener';
+    });
+    document.querySelectorAll('.js-tel').forEach(function (a) {
+      a.href = 'tel:' + c.salesLines[0];
+    });
   }
 
   /* ── Boot ──────────────────────────────────────────────────────────── */
@@ -291,6 +385,7 @@
     initCardGlow();
     initTilt();
     initCounters();
+    wireCTAs();
   }
 
   if (document.readyState === 'loading') {

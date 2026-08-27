@@ -27,8 +27,9 @@
     <div class="shell">
       <span class="eyebrow" data-en="Contact">تواصل معنا</span>
       <h1 class="grad" data-en="Talk to a human">كلّم حد حقيقي</h1>
-      <p class="lead" data-en="No call centre, no ticket number. Send a message and someone from the showroom answers you.">
-        مفيش كول سنتر ولا رقم تذكرة. ابعت رسالة وحد من المعرض هيرد عليك.
+      <p class="lead" data-en="Eleven sales lines, five showrooms, and WhatsApp. No call centre, no ticket number — someone from the showroom answers you.">
+        أحد عشر خط مبيعات، خمس صالات عرض، وواتساب. مفيش كول سنتر ولا رقم تذكرة —
+        حد من المعرض نفسه هو اللي هيرد عليك.
       </p>
     </div>
   </section>
@@ -87,6 +88,8 @@
             <h3 style="margin-bottom:.4rem" data-en="Direct lines">خطوط مباشرة</h3>
             <div id="contact-list"></div>
           </div>
+
+          <div class="card" style="margin-bottom:1.2rem" id="lines-list"></div>
 
           <div class="card">
             <h3 style="margin-bottom:1rem" data-en="Our branches">فروعنا</h3>
@@ -147,26 +150,47 @@
   /* ── contact details ── */
   function fillContact() {
     var lang = window.currentLang();
+    var esc  = window.esc;
     var L = {
-      phone: lang === 'ar' ? 'تليفون' : 'Phone',
-      sales: lang === 'ar' ? 'المبيعات' : 'Sales',
+      lines: lang === 'ar' ? 'خطوط المبيعات' : 'Sales lines',
       wa:    lang === 'ar' ? 'واتساب' : 'WhatsApp',
       mail:  lang === 'ar' ? 'البريد الإلكتروني' : 'Email',
-      hours: lang === 'ar' ? 'مواعيد العمل' : 'Opening hours'
+      hours: lang === 'ar' ? 'مواعيد العمل' : 'Opening hours',
+      tax:   lang === 'ar' ? 'السجل الضريبي' : 'Tax registration'
     };
 
     document.getElementById('contact-list').innerHTML =
-      item('📞', L.phone, '<a class="num" href="tel:' + c.phonePrimary.replace(/\s/g,'') + '">' + c.phonePrimary + '</a>') +
-      item('🛒', L.sales, '<a class="num" href="tel:' + c.phoneSales.replace(/\s/g,'') + '">' + c.phoneSales + '</a>') +
-      item('💬', L.wa,    '<a href="https://wa.me/' + c.whatsapp + '" target="_blank" rel="noopener">' +
-                          (lang === 'ar' ? 'ابعت رسالة دلوقتي' : 'Send a message now') + '</a>') +
-      item('✉️', L.mail,  '<a href="mailto:' + c.email + '">' + c.email + '</a>') +
-      item('🕒', L.hours, '<span>' + window.tr(c.hours) + '</span>');
+      item('💬', L.wa, '<a href="https://wa.me/' + c.whatsapp + '" target="_blank" rel="noopener">' +
+                       (lang === 'ar' ? 'ابعت رسالة دلوقتي' : 'Send a message now') + '</a>') +
+      item('✉️', L.mail,  '<a href="mailto:' + esc(c.email) + '">' + esc(c.email) + '</a>') +
+      item('🕒', L.hours, '<span>' + esc(window.tr(c.hours)) + '</span>') +
+      item('🧾', L.tax,   '<span class="num">' + esc(SITE.company.taxId) + '</span>');
 
+    /* all eleven hotlines, as a tap-to-call grid */
+    document.getElementById('lines-list').innerHTML =
+      '<h3 style="margin-bottom:.4rem">' + L.lines + '</h3>' +
+      '<p style="margin-bottom:1.1rem;font-size:.9rem">' +
+        (lang === 'ar' ? 'كل الأرقام دي بترد عليك. اضغط على أي رقم للاتصال.'
+                       : 'Every one of these lines is answered. Tap any number to call.') +
+      '</p>' +
+      '<div class="lines">' +
+        c.salesLines.map(function (n) {
+          return '<a class="tel-line" href="tel:' + esc(n) + '">' + esc(n) + '</a>';
+        }).join('') +
+      '</div>';
+
+    /* branches, with their landlines */
     document.getElementById('branch-list').innerHTML = SITE.branches.map(function (b) {
+      if (b.comingSoon) {
+        return item('🚧', window.tr(b.name),
+          '<span>' + (lang === 'ar' ? 'قريباً — الفرع بيتجهز' : 'Opening soon') + '</span>');
+      }
       return item('📍', window.tr(b.name),
-        '<span>' + window.tr(b.address) + '</span><br>' +
-        '<a href="' + b.mapUrl + '" target="_blank" rel="noopener">' +
+        '<span>' + esc(window.tr(b.address)) + '</span><br>' +
+        b.phones.map(function (n) {
+          return '<a class="num" href="tel:' + esc(n) + '">' + esc(n) + '</a>';
+        }).join(' · ') +
+        '<br><a href="' + esc(b.mapUrl) + '" target="_blank" rel="noopener">' +
         (lang === 'ar' ? 'افتح على الخريطة' : 'Open in Maps') + '</a>');
     }).join('');
   }

@@ -1,62 +1,103 @@
 # First 1 Car — الموقع الرسمي / Public Website
 
-موقع تعريفي للعملاء لمعرض **فيرست 1 كار**. عربي أولاً مع زر تبديل للإنجليزية،
-ويعرض **السعر الرسمي فقط**.
-
-A customer-facing website for the First 1 Car showroom. Arabic-first with an
-English toggle, and it publishes **the official price only**.
-
----
-
-## 1 · اللي محتاج تملاه قبل النشر / Fill this in before launch
+موقع تعريفي للعملاء لمعرض **فيرست 1 كار**. عربي أولاً مع زر تبديل للإنجليزية.
+A customer-facing website for the First 1 Car showroom. Arabic-first, with an English toggle.
 
 كل البيانات في ملف واحد: **`assets/js/data.js`**
 Everything lives in one file: **`assets/js/data.js`**
 
-افتحه ودوّر على كلمة `TODO` — دي كل الحاجات اللي لسه محتاجة بياناتك الحقيقية:
-Open it and search for `TODO`. Those are the placeholders:
+---
 
-| اللي محتاج يتغيّر | Where | حالياً |
+## 1 · اللي لسه ناقص / What still needs your input
+
+معظم البيانات دلوقتي حقيقية ومسحوبة من قاعدة بيانات النظام. الناقص بس:
+Most of the data is now real, taken from the system database. Only these remain:
+
+| الحاجة | مكانها في `data.js` | الوضع |
 |---|---|---|
-| أرقام التليفون والواتساب | `contact.phonePrimary` · `phoneSales` · `whatsapp` | أرقام وهمية |
-| البريد الإلكتروني | `contact.email` | `info@first1car.net` |
-| مواعيد العمل | `contact.hours` | ١٠ص – ١٠م، الجمعة إجازة |
-| لينكات السوشيال | `social.facebook` · `instagram` · `tiktok` | فاضية |
-| أسماء وعناوين الفروع | `branches[]` | "الفرع الرئيسي" / "الفرع الثاني" |
-| سنة التأسيس | `company.founded` | 2016 |
-| قائمة البنوك | `banks[]` | ٦ بنوك مقترحة |
+| **رقم الواتساب** | `contact.whatsapp` | متحط `201117550080` — **أكّد إن الخط ده عليه واتساب** |
+| البريد الإلكتروني | `contact.email` | `info@first1car.net` — أكّده |
+| إنستجرام وتيك توك | `social.instagram` · `social.tiktok` | فاضيين (فيسبوك متحط) |
+| **لوجوهات الماركات والبنوك** | `USE_LOGO_FILES` | شوف القسم ٣ تحت |
+| **صور العربيات والمعرض** | ملفات صور | شوف القسم ٤ تحت |
 
-> ⚠ رقم الواتساب لازم يكون **أرقام بس** بصيغة دولية بدون `+` وبدون مسافات —
-> مثال: `201001234567`.
-> The WhatsApp number must be **digits only**, international format, no `+`.
+كل الباقي حقيقي: ٦ فروع، ١١ خط مبيعات، ٩ ماركات، ٣٨ موديل، ٩٤ فئة، ١٤ بنك، السجل الضريبي، المواعيد.
 
-### الأسعار / Prices
+---
 
-كل موديل فيه حقل `price`:
+## 2 · الأسعار / Prices
+
+كل الموديلات دلوقتي بتعرض **"اتصل للسعر"**، وده مقصود — الصفحة بتشرح للعميل
+إن الأسعار بتتحرك مع السوق وإننا بنقولها لحظياً.
+
+لو حبيت تعرض سعر رقم على أي موديل، حط الرقم في حقل `price`:
 
 ```js
-{ name: { ar: "تيجو 7", en: "Tiggo 7" }, body: "suv", price: 1250000 }
+{ name:{ar:"تيجو 7",en:"Tiggo 7"}, body:"suv", trims:["Comfort","Luxury"], price: 1250000 }
 ```
 
-- حط الرقم بالجنيه من غير فواصل → هيظهر `1,250,000 جنيه`
-- سيبه `null` → هيظهر **"اتصل للسعر"**
+- رقم بالجنيه من غير فواصل → هيظهر `1,250,000 جنيه`
+- من غير حقل `price` أو `price: null` → هيظهر **"اتصل للسعر"**
 
-دلوقتي كل الموديلات `null` لحد ما تبعت لنا الأسعار الرسمية.
-All models are currently `null` until you send the official price list.
+> ملاحظة: الموقع ده بيعرض **السعر الرسمي بس**. أسعار العميل وأسعار التاجر
+> اللي في النظام الداخلي مش موجودة في الموقع خالص، ومفيش أي اتصال بقاعدة البيانات.
 
-### الصور / Photos
+---
+
+## 3 · اللوجوهات / Logos
+
+الموقع دلوقتي بيرسم **بلاطة باسم الماركة بلون الماركة** بدل اللوجو، وشكلها نضيف
+ومحتاجة صفر ملفات.
+
+لما تجيب اللوجوهات الرسمية (من الوكلاء أو من البنوك):
+
+**١.** حطهم PNG أو SVG بخلفية شفافة بالأسماء دي بالظبط:
+
+```
+assets/img/brands/chery.png       assets/img/banks/abk.png
+assets/img/brands/hyundai.png     assets/img/banks/nbk.png
+assets/img/brands/haval.png       assets/img/banks/enbd.png
+assets/img/brands/changan.png     assets/img/banks/egbank.png
+assets/img/brands/geely.png       assets/img/banks/misr.png
+assets/img/brands/mitsubishi.png  assets/img/banks/cairo.png
+assets/img/brands/gac.png         assets/img/banks/saib.png
+assets/img/brands/jmc.png         assets/img/banks/ebe.png
+assets/img/brands/foton.png       assets/img/banks/agri.png
+                                  assets/img/banks/next.png
+                                  assets/img/banks/agricole.png
+                                  assets/img/banks/drive.png
+                                  assets/img/banks/contact.png
+                                  assets/img/banks/sky.png
+```
+
+**٢.** في `assets/js/data.js` غيّر سطر واحد:
+
+```js
+const USE_LOGO_FILES = true;
+```
+
+خلاص. أي لوجو مش موجود هيفضل بالبلاطة بتاعته — **الموقع عمره ما هيعرض صورة مكسورة.**
+Any missing logo simply keeps its plate; the site never shows a broken image.
+
+المقاس المفضل: ارتفاع ~120px، خلفية شفافة.
+
+> لو عايز تستخدم لينك من النت بدل ملف، حط اللينك في حقل `logo` بتاع الماركة:
+> `logo: "https://example.com/chery.png"` — ونفس نظام الحماية شغال.
+
+---
+
+## 4 · الصور / Photos
 
 الموقع شغال دلوقتي من غير أي صور — فيه أماكن جاهزة بتصميم حلو مكان الصور.
-The site works with zero photos today; styled placeholders sit where images go.
-
-عشان تحط صورك، حطها بالأسماء دي بالظبط:
+حط صورك بالأسماء دي:
 
 ```
-assets/img/cars/exterior.jpg        صورة عربية من بره
-assets/img/interior/cabin.jpg       صورة من جوه
-assets/img/cars/showroom.jpg        صورة المعرض
-assets/img/cars/showroom-wide.jpg   صورة المعرض (صفحة من نحن)
-assets/img/cars/team.jpg            صورة الفريق
+assets/img/cars/exterior.jpg        عربية من بره        (الرئيسية)
+assets/img/interior/cabin.jpg       من جوه              (الرئيسية)
+assets/img/cars/showroom.jpg        المعرض              (الرئيسية)
+assets/img/cars/showroom-wide.jpg   المعرض              (من نحن)
+assets/img/cars/team.jpg            الفريق / الشهادات   (من نحن)
+assets/img/cars/ops.jpg             من الشغل            (من نحن)
 ```
 
 وبعدين في الـ HTML بدّل البلوك ده:
@@ -71,58 +112,52 @@ assets/img/cars/team.jpg            صورة الفريق
 <img src="assets/img/cars/exterior.jpg" alt="">
 ```
 
-المقاس المفضل: **1600×1200** أو أكبر، JPG، أقل من 400KB لكل صورة.
+المقاس المفضل: **1600×1200** أو أكبر، JPG، أقل من 400KB للصورة.
 
 ---
 
-## 2 · النشر على الاستضافة / Deploying
+## 5 · النشر / Deploying
 
-الموقع **HTML/CSS/JS عادي** — مفيش build ولا Node ولا أي تنصيب.
+الموقع **HTML/CSS/JS عادي** — مفيش build ولا Node ولا تنصيب.
 Plain static HTML/CSS/JS — no build step, no dependencies.
 
 ### على Hostinger (نفس استضافة النظام)
 
-النظام الداخلي شغال دلوقتي في `public_html`. عشان متكسّرش حاجة، الأفضل:
-
-**الخيار المقترح** — الموقع في الجذر، والنظام في مجلد فرعي:
+النظام الداخلي شغال دلوقتي في `public_html`. عشان متكسّرش حاجة:
 
 ```
 public_html/
-├── index.html          ← الموقع (الصفحة الرئيسية)
+├── index.html          ← الموقع
 ├── cars.html
 ├── … باقي الصفحات
 ├── assets/
-└── system/             ← انقل كل ملفات النظام هنا
+└── system/             ← انقل ملفات النظام هنا
     ├── dashboard.php
     ├── config.php
+    ├── .htaccess       ← مهم: انقله معاهم
     └── …
 ```
 
-بعد النقل، الموظفين يدخلوا على `first1car.net/system/`.
+بعد النقل الموظفين يدخلوا على `first1car.net/system/`.
 
-> ⚠ لو نقلت النظام لمجلد `system/`، انقل معاه ملف `.htaccess` بتاعه —
-> هو اللي بيمنع تحميل `config.php` و `auth.php` من المتصفح.
+> ⚠ لازم `.htaccess` بتاع النظام ينتقل معاه — هو اللي بيمنع تحميل
+> `config.php` و `auth.php` من المتصفح.
 
-**الخيار الأبسط** لو مش عايز تنقل النظام: ارفع الموقع في
-`public_html/site/` وخلي الدومين يوجّه عليه.
-
-### أي استضافة تانية
-
-ارفع كل الملفات زي ما هي. الموقع بيشتغل على أي سيرفر ثابت
-(Netlify, Vercel, GitHub Pages, Cloudflare Pages) من غير أي تعديل.
+أي استضافة تانية: ارفع الملفات زي ما هي. بيشتغل على Netlify / Vercel /
+GitHub Pages / Cloudflare Pages من غير أي تعديل.
 
 ---
 
-## 3 · هيكل الموقع / Site structure
+## 6 · الصفحات / Pages
 
-| الصفحة | الملف | بتعمل إيه |
+| الصفحة | الملف | المحتوى |
 |---|---|---|
-| الرئيسية | `index.html` | الهيرو المتحرك، الماركات، ليه إحنا، أقسام السكرول |
-| سياراتنا | `cars.html` | كل الماركات والموديلات + **السعر الرسمي بس** |
-| التقسيط | `finance.html` | خطوات موافقات البنوك، البنوك، الأوراق المطلوبة |
-| من نحن | `about.html` | الحكاية، القيم، الأرقام |
-| فروعنا | `branches.html` | العناوين والتليفونات ولينكات الخرائط |
-| اتصل بنا | `contact.html` | فورم بيفتح واتساب + كل بيانات التواصل |
+| الرئيسية | `index.html` | هيرو متحرك، شريط الماركات، ٣٠ سنة/١٠٠ ألف عميل/٤٨ ساعة، المزايا، البرامج الخاصة |
+| سياراتنا | `cars.html` | ٩ ماركات · ٣٨ موديل · ٩٤ فئة، بفلتر ماركة وفلتر نوع |
+| التقسيط | `finance.html` | خطوات موافقات البنوك، ١٤ جهة تمويل، الأوراق المطلوبة |
+| من نحن | `about.html` | ٣٠ سنة في السوق، معنى "موزع معتمد"، القيم، حائط الماركات |
+| فروعنا | `branches.html` | ٥ فروع مفتوحة + جوزيف تيتو "قريباً" |
+| اتصل بنا | `contact.html` | فورم بيفتح واتساب، ١١ خط مبيعات، الفروع، السجل الضريبي |
 
 ### الملفات
 
@@ -133,49 +168,38 @@ assets/
 │   ├── components.css    الهيدر والفوتر وزرار الواتساب
 │   └── pages.css         أقسام الصفحات
 ├── js/
-│   ├── data.js           ★ كل المحتوى — عدّل هنا
-│   ├── site.js           الهيدر/الفوتر، تبديل اللغة، الأنيميشن
-│   ├── cars.js           عرض الموديلات والأسعار
+│   ├── data.js           ★ كل المحتوى — عدّل هنا وبس
+│   ├── site.js           الهيدر/الفوتر، اللغة، بلاطات الماركات، الأنيميشن
+│   ├── cars.js           عرض الموديلات والفلاتر
 │   └── bg.js             الخلفية المتحركة (الطريق والنجوم)
 └── img/
     ├── logo.png          اللوجو (اتقص وبقى شفاف)
-    └── car-hero.svg      رسمة العربية في الهيرو
+    ├── car-hero.svg      رسمة العربية في الهيرو
+    ├── brands/           لوجوهات الماركات (فاضي دلوقتي)
+    └── banks/            لوجوهات البنوك (فاضي دلوقتي)
 ```
 
 ---
 
-## 4 · اللغة / Language
+## 7 · اللغة / Language
 
 - **العربي هو الافتراضي.** أول ما حد يفتح الموقع بيلاقيه عربي RTL.
-- زرار `EN` فوق بيبدّل، والاختيار بيتحفظ في المتصفح ويفضل معاه في كل الصفحات.
-- أي نص في الـ HTML فيه `data-en="…"` — العربي هو الأصل، والإنجليزي في الـ attribute.
-
-عشان تضيف نص جديد بلغتين:
+- زرار `EN` بيبدّل، والاختيار بيتحفظ في المتصفح ويفضل في كل الصفحات.
+- أي نص فيه `data-en="…"` — العربي هو الأصل، والإنجليزي في الـ attribute:
 
 ```html
 <h2 data-en="English version here">النص العربي هنا</h2>
 ```
 
+> لو الإنجليزي فيه علامة تنصيص `"` لازم تتكتب `&quot;` — غير كده الجملة هتتقطع.
+
 ---
 
-## 5 · ملاحظة أمان مهمة / Security note
+## 8 · ملاحظة أمان / Security note
 
-الموقع ده **منفصل تماماً** عن النظام الداخلي — مفيش أي اتصال بقاعدة البيانات،
-ومفيش أي أسعار تاجر أو بيانات عملاء أو أرقام مبيعات فيه. اللي معروض هو
-السعر الرسمي بس، من ملف `data.js` اليدوي.
+الموقع **منفصل تماماً** عن النظام الداخلي: مفيش اتصال بقاعدة البيانات، ولا
+أسعار تاجر، ولا بيانات عملاء، ولا أرقام مبيعات. اللي معروض هو السعر الرسمي بس،
+من ملف `data.js` اليدوي.
 
 This site is **fully separate** from the internal system: no database
-connection, no trade prices, no customer data, no sales figures. Only the
-official price, from the hand-edited `data.js`.
-
----
-
-## 6 · الخطوة الجاية (اختياري) / Later, if you want it
-
-دلوقتي الأسعار بتتكتب بالإيد في `data.js`. لو حبيت الموقع يسحب السعر الرسمي
-**أوتوماتيك** من جدول `pricing` بتاع النظام، ده ممكن بملف PHP صغير واحد
-بيقرا عمود `official_price` بس — ومحدش يقدر يوصل لأي عمود تاني.
-
-Prices are hand-edited today. If you later want the site to pull the official
-price **automatically** from the system's `pricing` table, that takes one small
-PHP endpoint reading `official_price` only — no other column exposed.
+connection, no trade prices, no customer data, no sales figures.
