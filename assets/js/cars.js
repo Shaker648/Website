@@ -42,7 +42,7 @@
   function priceOf(model) {
     var lang = window.currentLang();
     if (model.price == null) {
-      return { cls: 'price-val ask', text: lang === 'ar' ? 'اتصل للسعر' : 'Call for price' };
+      return { cls: 'price-val ask', text: lang === 'ar' ? 'اتصل للاستعلام عن السعر' : 'Call for price' };
     }
     var n = Number(model.price).toLocaleString('en-US');
     return { cls: 'price-val', text: lang === 'ar' ? n + ' جنيه' : 'EGP ' + n };
@@ -54,7 +54,7 @@
 
     var html = '<button type="button" class="brand-tab' +
                (brandFilter === 'all' ? ' active' : '') + '" data-brand="all">' +
-               (lang === 'ar' ? 'كل الماركات' : 'All brands') + '</button>';
+               (lang === 'ar' ? 'كل العلامات' : 'All brands') + '</button>';
 
     SITE.brands.forEach(function (b) {
       if (!b.models || !b.models.length) return;
@@ -95,13 +95,13 @@
 
     if (countEl) {
       countEl.textContent = lang === 'ar'
-        ? items.length + ' موديل' + (items.length === 1 ? '' : ' متاح')
+        ? items.length + (items.length === 1 ? ' طراز متاح' : ' طرازاً متاحاً')
         : items.length + (items.length === 1 ? ' model' : ' models');
     }
 
     if (!items.length) {
       gridEl.innerHTML = '<p class="lead" style="grid-column:1/-1;text-align:center">' +
-        (lang === 'ar' ? 'مفيش موديلات مطابقة للاختيار ده — جرّب فلتر تاني.'
+        (lang === 'ar' ? 'لا توجد طُرز مطابقة لهذا الاختيار — جرّب تصنيفاً آخر.'
                        : 'No models match this filter — try another.') + '</p>';
       return;
     }
@@ -121,7 +121,7 @@
         ? '<span class="trim-count">+' + (trims.length - 4) + '</span>' : '';
 
       var msg = lang === 'ar'
-        ? 'السلام عليكم، حابب أستفسر عن ' + brand + ' ' + name + ' والسعر الرسمي.'
+        ? 'السلام عليكم، أودّ الاستفسار عن ' + brand + ' ' + name + ' وسعرها الرسمي.'
         : 'Hello, I would like to ask about the ' + brand + ' ' + name + ' and its official price.';
 
       return '' +

@@ -13,13 +13,14 @@ const SITE = {
   /* ── Company ─────────────────────────────────────────────────────────── */
   company: {
     name:    { ar: "فيرست 1 كار",  en: "First 1 Car" },
-    tagline: { ar: "موزع معتمد. من أكتر من ٣٠ سنة.",
-               en: "An authorised distributor. For over 30 years." },
+    tagline: { ar: "موزّع معتمد منذ عام ١٩٩٠",
+               en: "An authorised distributor since 1990" },
     intro:   {
-      ar: "موزع معتمد لأكبر العلامات التجارية في السوق المصري من أكتر من ٣٠ سنة. تسع ماركات، خمس صالات عرض، تسليم وترخيص خلال ٤٨ ساعة، وأكتر من ١٠٠,٠٠٠ عميل وثقوا فينا.",
-      en: "An authorised distributor for the biggest brands in the Egyptian market for over 30 years. Nine brands, five showrooms, delivery and licensing within 48 hours, and more than 100,000 customers who trusted us."
+      ar: "موزّع معتمد لكبرى العلامات التجارية في السوق المصري منذ عام ١٩٩٠. تسع علامات تجارية، وخمس صالات عرض، وتسليم وترخيص خلال ٤٨ ساعة، وأكثر من ١٠٠٫٠٠٠ عميل منحونا ثقتهم.",
+      en: "An authorised distributor for the leading brands in the Egyptian market since 1990. Nine brands, five showrooms, delivery and licensing within 48 hours, and more than 100,000 customers who placed their trust in us."
     },
-    yearsInMarket:  30,
+    founded:        1990,
+    yearsInMarket:  36,
     customersServed: 100000,
     taxId: "895-607-506"
   },
@@ -39,7 +40,7 @@ const SITE = {
     email: "admin@first1car.net",
 
     hours: {
-      ar: "يومياً من ١٠ صباحاً حتى ١١ مساءً",
+      ar: "يومياً من العاشرة صباحاً حتى الحادية عشرة مساءً",
       en: "Daily, 10:00 AM – 11:00 PM"
     }
   },
@@ -54,23 +55,23 @@ const SITE = {
 
   /* ── What we give the customer ───────────────────────────────────────── */
   perks: [
-    { icon: "💸", ar: "كاش باك يصل إلى ٥٪",  en: "Cash back up to 5%" },
-    { icon: "📋", ar: "ترخيص هدية",           en: "Licensing on us" },
+    { icon: "💸", ar: "استرداد نقدي يصل إلى ٥٪", en: "Cash back up to 5%" },
+    { icon: "📋", ar: "الترخيص هديّة منّا",     en: "Licensing on us" },
     { icon: "🛡️", ar: "تأمين مجاني",          en: "Free insurance" },
     { icon: "🔧", ar: "صيانة مجانية",         en: "Free servicing" }
   ],
 
   /* special programmes we run */
   programs: [
-    { icon: "🏡", ar: "ربة المنزل", en: "Homemakers",
-      dar: "برنامج مخصص لربات البيوت بشروط ميسّرة.",
-      den: "A dedicated programme with easier requirements." },
-    { icon: "🌍", ar: "الأجانب", en: "Foreign residents",
-      dar: "إجراءات واضحة للمقيمين الأجانب في مصر.",
-      den: "A clear process for foreign residents in Egypt." },
-    { icon: "✈️", ar: "العاملون بالخارج", en: "Egyptians abroad",
-      dar: "اشترِ من الخارج وسلّم لأهلك هنا.",
-      den: "Buy from abroad, we deliver to your family here." }
+    { icon: "🏡", ar: "ربّات البيوت", en: "Homemakers",
+      dar: "برنامج مخصّص لربّات البيوت بشروط ميسّرة ومستندات مبسّطة.",
+      den: "A dedicated programme with easier terms and simplified paperwork." },
+    { icon: "🌍", ar: "المقيمون الأجانب", en: "Foreign residents",
+      dar: "إجراءات واضحة ومحدّدة للمقيمين الأجانب داخل مصر.",
+      den: "A clear, defined process for foreign residents in Egypt." },
+    { icon: "✈️", ar: "المصريون بالخارج", en: "Egyptians abroad",
+      dar: "اشترِ سيارتك وأنت بالخارج، ونتولّى تسليمها لأسرتك هنا.",
+      den: "Buy from abroad and we hand the car to your family here." }
   ],
 
   /* ── Branches (showrooms only — storage sites are not public) ────────── */
@@ -135,15 +136,15 @@ const SITE = {
     {
       id: "chery", name: { ar: "شيري", en: "Chery" }, color: "#d51c29", logo: "",
       models: [
-        { name:{ar:"تيجو 4 برو",en:"Tiggo 4 Pro"}, body:"suv",   trims:["Comfort","Luxury","Turbo"] },
+        { name:{ar:"تيجو 4 برو",en:"Tiggo 4 Pro"}, body:"suv",   trims:["Comfort","Luxury","Turbo"], photo:"assets/img/cars/tiggo-4-pro.jpg"  },
         { name:{ar:"تيجو 7",en:"Tiggo 7"},         body:"suv",   trims:["Comfort","Luxury"] },
         { name:{ar:"تيجو 7 برو CKD",en:"Tiggo 7 Pro CKD"}, body:"suv", trims:["Comfort","Luxury"] },
-        { name:{ar:"تيجو 7 برو ماكس",en:"Tiggo 7 Pro Max"}, body:"suv", trims:["Comfort","Luxury"] },
+        { name:{ar:"تيجو 7 برو ماكس",en:"Tiggo 7 Pro Max"}, body:"suv", trims:["Comfort","Luxury"], photo:"assets/img/cars/tiggo-7-pro.jpg"  },
         { name:{ar:"تيجو 8",en:"Tiggo 8"},         body:"suv",   trims:["Luxury 5 Seats","Comfort 7 Seats","Luxury 7 Seats"] },
         { name:{ar:"تيجو 8 برو ماكس",en:"Tiggo 8 Pro Max"}, body:"suv", trims:["Luxury","Flagship"] },
-        { name:{ar:"تيجو 9 هايبرد",en:"Tiggo 9 PHEV"}, body:"suv", trims:["Luxury"] },
-        { name:{ar:"أريزو 5",en:"Arrizo 5"},       body:"sedan", trims:["MT","AT Basic","AT Comfort"] },
-        { name:{ar:"أريزو 6",en:"Arrizo 6"},       body:"sedan", trims:["Comfort","Luxury"] },
+        { name:{ar:"تيجو 9 هايبرد",en:"Tiggo 9 PHEV"}, body:"suv", trims:["Luxury"], photo:"assets/img/cars/tiggo-9.jpg"  },
+        { name:{ar:"أريزو 5",en:"Arrizo 5"},       body:"sedan", trims:["MT","AT Basic","AT Comfort"], photo:"assets/img/cars/arrizo-5-eado.jpg"  },
+        { name:{ar:"أريزو 6",en:"Arrizo 6"},       body:"sedan", trims:["Comfort","Luxury"], photo:"assets/img/cars/arrizo-6.jpg"  },
         { name:{ar:"أريزو 8",en:"Arrizo 8"},       body:"sedan", trims:["Luxury","Flagship"] }
       ]
     },
@@ -152,7 +153,7 @@ const SITE = {
       models: [
         { name:{ar:"توسان",en:"Tucson"},           body:"suv",   trims:["Shadow","Blaze","Redline","Redline N-Pack","Night","Black Diamond","N-Line"] },
         { name:{ar:"إلنترا AD",en:"Elantra AD"},   body:"sedan", trims:["Modern SR","Top Line"] },
-        { name:{ar:"i30 هاتشباك",en:"i30 Hatchback"}, body:"hatch", trims:["Blaze","Redline","N-Line"] },
+        { name:{ar:"i30 هاتشباك",en:"i30 Hatchback"}, body:"hatch", trims:["Blaze","Redline","N-Line"], photo:"assets/img/cars/i30.jpg"  },
         { name:{ar:"i30 فاست باك",en:"i30 Fastback"}, body:"sedan", trims:["Blaze","Redline","N-Line"] },
         { name:{ar:"i30 ستيشن",en:"i30 Station"},  body:"wagon", trims:["Blaze","Redline"] }
       ]
@@ -160,7 +161,7 @@ const SITE = {
     {
       id: "haval", name: { ar: "هافال", en: "Haval" }, color: "#c1121f", logo: "",
       models: [
-        { name:{ar:"جوليون",en:"Jolion"}, body:"suv", trims:["Standard CKD","Deluxe CKD","High Deluxe CKD"] },
+        { name:{ar:"جوليون",en:"Jolion"}, body:"suv", trims:["Standard CKD","Deluxe CKD","High Deluxe CKD"], photo:"assets/img/cars/jolion.jpg"  },
         { name:{ar:"H6",en:"H6"},         body:"suv", trims:["Platinum","Ultra","HEV Ultra"] },
         { name:{ar:"H7",en:"H7"},         body:"suv", trims:["Ultra","Ultra Black Edition"] }
       ]
@@ -169,12 +170,12 @@ const SITE = {
       id: "changan", name: { ar: "شانجان", en: "Changan" }, color: "#0057b8", logo: "",
       models: [
         { name:{ar:"CS35 بلس",en:"CS35 Plus"}, body:"suv",   trims:["Elite","Premium","Flagship"] },
-        { name:{ar:"CS55 بلس",en:"CS55 Plus"}, body:"suv",   trims:["Elite","Premium","Flagship"] },
+        { name:{ar:"CS55 بلس",en:"CS55 Plus"}, body:"suv",   trims:["Elite","Premium","Flagship"], photo:"assets/img/cars/cs55-plus.jpg"  },
         { name:{ar:"CS75",en:"CS75"},          body:"suv",   trims:["Elite","Flagship"] },
-        { name:{ar:"UNI-T",en:"UNI-T"},        body:"suv",   trims:["Premium","Flagship"] },
-        { name:{ar:"إيدو",en:"Eado"},          body:"sedan", trims:["Elite","Flagship"] },
+        { name:{ar:"UNI-T",en:"UNI-T"},        body:"suv",   trims:["Premium","Flagship"], photo:"assets/img/cars/uni-t.jpg"  },
+        { name:{ar:"إيدو",en:"Eado"},          body:"sedan", trims:["Elite","Flagship"], photo:"assets/img/cars/arrizo-5-eado.jpg"  },
         { name:{ar:"إيدو بلس",en:"Eado Plus"}, body:"sedan", trims:["Elite","Premium","Flagship"] },
-        { name:{ar:"UNI-V",en:"UNI-V"},        body:"sedan", trims:["Flagship"] }
+        { name:{ar:"UNI-V",en:"UNI-V"},        body:"sedan", trims:["Flagship"], photo:"assets/img/cars/uni-v.jpg"  }
       ]
     },
     {
@@ -182,16 +183,16 @@ const SITE = {
       models: [
         { name:{ar:"كوول راي",en:"Coolray"},   body:"suv",   trims:["Comfort","Premium","Sport"] },
         { name:{ar:"سيتي راي",en:"Cityray"},   body:"suv",   trims:["Comfort","Premium","Sport"] },
-        { name:{ar:"إمجراند",en:"Emgrand"},    body:"sedan", trims:["Comfort","Luxury"] }
+        { name:{ar:"إمجراند",en:"Emgrand"},    body:"sedan", trims:["Comfort","Luxury"], photo:"assets/img/cars/emgrand.jpg"  }
       ]
     },
     {
       id: "mitsubishi", name: { ar: "ميتسوبيشي", en: "Mitsubishi" }, color: "#e60012", logo: "",
       models: [
-        { name:{ar:"ديستيناتور",en:"Destinator"},   body:"suv", trims:["ML","HL","PL"] },
+        { name:{ar:"ديستيناتور",en:"Destinator"},   body:"suv", trims:["ML","HL","PL"], photo:"assets/img/cars/destinator.jpg"  },
         { name:{ar:"أوتلاندر",en:"Outlander"},      body:"suv", trims:["ML","HL","PL"] },
         { name:{ar:"إكليبس كروس",en:"Eclipse Cross"}, body:"suv", trims:["Inspire HI","Instyle TI","Infinity"] },
-        { name:{ar:"إكسباندر",en:"Xpander"},        body:"mpv", trims:["ML","HL","PL"] }
+        { name:{ar:"إكسباندر",en:"Xpander"},        body:"mpv", trims:["ML","HL","PL"], photo:"assets/img/cars/xpander.jpg"  }
       ]
     },
     {
@@ -212,7 +213,7 @@ const SITE = {
       id: "foton", name: { ar: "فوتون", en: "Foton" }, color: "#00539f", logo: "",
       models: [
         { name:{ar:"ميكروباص",en:"Microbus"},        body:"van",    trims:["Standard"] },
-        { name:{ar:"وندر نص طن",en:"Wonder 1/2 Ton"}, body:"pickup", trims:["Standard"] }
+        { name:{ar:"وندر نص طن",en:"Wonder 1/2 Ton"}, body:"pickup", trims:["Standard"], photo:"assets/img/cars/foton-wonder.jpg"  }
       ]
     }
   ],
@@ -243,7 +244,7 @@ const SITE = {
     exterior:     "",   // home · "من بره"
     interior:     "",   // home · "من جوه"
     showroom:     "",   // home · "السعر الرسمي"
-    showroomWide: "",   // about · our story
+    showroomWide: "assets/img/showroom-gac.jpg",  // about · our story
     team:         "",   // about · authorised distributor
     ops:          ""    // about · how we work
   },

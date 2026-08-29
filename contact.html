@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>اتصل بنا | فيرست 1 كار</title>
-<meta name="description" content="أرقام تليفونات فيرست 1 كار وواتساب والبريد الإلكتروني ومواعيد العمل — كلمنا في أي وقت.">
+<title>اتصل بنا | فيرست ١ كار</title>
+<meta name="description" content="أرقام هواتف فيرست ١ كار وواتساب والبريد الإلكتروني ومواعيد العمل — تواصل معنا في أي وقت.">
 <meta name="theme-color" content="#020617">
 <link rel="icon" href="assets/img/logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -35,10 +35,10 @@ img{max-width:100%;display:block}
   <section class="page-hero">
     <div class="shell">
       <span class="eyebrow" data-en="Contact">تواصل معنا</span>
-      <h1 class="grad" data-en="Talk to a human">كلّم حد حقيقي</h1>
-      <p class="lead" data-en="Eleven sales lines, five showrooms, and WhatsApp. No call centre, no ticket number — someone from the showroom answers you.">
-        أحد عشر خط مبيعات، خمس صالات عرض، وواتساب. مفيش كول سنتر ولا رقم تذكرة —
-        حد من المعرض نفسه هو اللي هيرد عليك.
+      <h1 class="grad" data-en="Talk to a person">تحدّث إلى شخص حقيقي</h1>
+      <p class="lead" data-en="Eleven sales lines, five showrooms, and WhatsApp. No call centre and no ticket number — someone from the showroom itself answers you.">
+        أحد عشر خط مبيعات، وخمس صالات عرض، وواتساب. لا مركز اتصال ولا رقم تذكرة —
+        يردّ عليك أحد العاملين في المعرض نفسه.
       </p>
     </div>
   </section>
@@ -49,9 +49,9 @@ img{max-width:100%;display:block}
 
         <!-- ── form ── -->
         <div class="card reveal">
-          <h3 style="margin-bottom:.5rem" data-en="Send us your request">ابعت لنا طلبك</h3>
-          <p style="margin-bottom:1.6rem;font-size:.92rem" data-en="Fill this in and it opens WhatsApp with your message ready to send.">
-            املا ده وهيفتح لك واتساب ورسالتك جاهزة للإرسال.
+          <h3 style="margin-bottom:.5rem" data-en="Send us your request">أرسل لنا طلبك</h3>
+          <p style="margin-bottom:1.6rem;font-size:.92rem" data-en="Fill this in and WhatsApp opens with your message ready to send.">
+            املأ البيانات التالية ليفتح واتساب ورسالتك جاهزة للإرسال.
           </p>
 
           <form id="enquiry">
@@ -63,26 +63,26 @@ img{max-width:100%;display:block}
             </div>
 
             <div class="field">
-              <label for="f-phone" data-en="Your phone number">رقم تليفونك</label>
+              <label for="f-phone" data-en="Your phone number">رقم هاتفك</label>
               <input id="f-phone" name="phone" type="tel" required inputmode="tel"
                      placeholder="01xxxxxxxxx"
                      data-en-placeholder="01xxxxxxxxx">
             </div>
 
             <div class="field">
-              <label for="f-car" data-en="Which car interests you?">مهتم بأنهي عربية؟</label>
+              <label for="f-car" data-en="Which car interests you?">أي سيارة تهمّك؟</label>
               <select id="f-car" name="car"></select>
             </div>
 
             <div class="field">
-              <label for="f-topic" data-en="What do you need?">محتاج إيه؟</label>
+              <label for="f-topic" data-en="What do you need?">بماذا نساعدك؟</label>
               <select id="f-topic" name="topic"></select>
             </div>
 
             <div class="field">
-              <label for="f-msg" data-en="Anything else? (optional)">أي حاجة تانية؟ (اختياري)</label>
+              <label for="f-msg" data-en="Anything else? (optional)">أي ملاحظات أخرى؟ (اختياري)</label>
               <textarea id="f-msg" name="message"
-                        placeholder="اللون المفضل، الميزانية، أو أي سؤال…"
+                        placeholder="اللون المفضّل، أو الميزانية، أو أي سؤال…"
                         data-en-placeholder="Preferred colour, budget, or any question…"></textarea>
             </div>
 
@@ -122,11 +122,11 @@ img{max-width:100%;display:block}
 
   /* ── select options, rebuilt on language change ── */
   var TOPICS = [
-    { ar: 'استفسار عن سعر',        en: 'Price enquiry' },
-    { ar: 'حجز تجربة قيادة',       en: 'Book a test drive' },
-    { ar: 'التقسيط وموافقات البنوك', en: 'Financing / bank approval' },
+    { ar: 'الاستعلام عن سعر',       en: 'Price enquiry' },
+    { ar: 'حجز تجربة قيادة',        en: 'Book a test drive' },
+    { ar: 'التقسيط وموافقات التمويل', en: 'Financing / bank approval' },
     { ar: 'التوافر والألوان',       en: 'Availability and colours' },
-    { ar: 'حاجة تانية',            en: 'Something else' }
+    { ar: 'موضوع آخر',              en: 'Something else' }
   ];
 
   function fillSelects() {
@@ -135,7 +135,7 @@ img{max-width:100%;display:block}
     var carSel = document.getElementById('f-car');
     var carVal = carSel.value;
     var opts = ['<option value="">' +
-      (lang === 'ar' ? 'لسه مش محدد / مش متأكد' : 'Not decided yet') + '</option>'];
+      (lang === 'ar' ? 'لم أُحدّد بعد' : 'Not decided yet') + '</option>'];
     SITE.brands.forEach(function (b) {
       if (!b.models || !b.models.length) return;
       opts.push('<optgroup label="' + window.tr(b.name) + '">');
@@ -170,7 +170,7 @@ img{max-width:100%;display:block}
 
     document.getElementById('contact-list').innerHTML =
       item('💬', L.wa, '<a href="https://wa.me/' + c.whatsapp + '" target="_blank" rel="noopener">' +
-                       (lang === 'ar' ? 'ابعت رسالة دلوقتي' : 'Send a message now') + '</a>') +
+                       (lang === 'ar' ? 'أرسل رسالة الآن' : 'Send a message now') + '</a>') +
       item('✉️', L.mail,  '<a href="mailto:' + esc(c.email) + '">' + esc(c.email) + '</a>') +
       item('🕒', L.hours, '<span>' + esc(window.tr(c.hours)) + '</span>') +
       item('🧾', L.tax,   '<span class="num">' + esc(SITE.company.taxId) + '</span>');
@@ -179,7 +179,7 @@ img{max-width:100%;display:block}
     document.getElementById('lines-list').innerHTML =
       '<h3 style="margin-bottom:.4rem">' + L.lines + '</h3>' +
       '<p style="margin-bottom:1.1rem;font-size:.9rem">' +
-        (lang === 'ar' ? 'كل الأرقام دي بترد عليك. اضغط على أي رقم للاتصال.'
+        (lang === 'ar' ? 'جميع هذه الخطوط مُجابة. اضغط على أي رقم للاتصال.'
                        : 'Every one of these lines is answered. Tap any number to call.') +
       '</p>' +
       '<div class="lines">' +
@@ -192,7 +192,7 @@ img{max-width:100%;display:block}
     document.getElementById('branch-list').innerHTML = SITE.branches.map(function (b) {
       if (b.comingSoon) {
         return item('🚧', window.tr(b.name),
-          '<span>' + (lang === 'ar' ? 'قريباً — هنعلن العنوان عند الافتتاح'
+          '<span>' + (lang === 'ar' ? 'قريباً — سيُعلَن العنوان عند الافتتاح'
                                     : 'Opening soon — address announced at opening') + '</span>');
       }
       return item('📍', window.tr(b.name),
@@ -218,7 +218,7 @@ img{max-width:100%;display:block}
 
     var lines = lang === 'ar'
       ? ['السلام عليكم، أنا ' + f.name.value.trim(),
-         'رقمي: ' + f.phone.value.trim(),
+         'رقم هاتفي: ' + f.phone.value.trim(),
          f.car.value   ? 'مهتم بـ: ' + f.car.value : '',
          'الطلب: ' + f.topic.value,
          f.message.value.trim() ? 'ملاحظات: ' + f.message.value.trim() : '']

@@ -547,3 +547,21 @@ a:hover > .bplate,.marquee-item:hover .bplate{
   position:absolute;inset:0;z-index:2;
   width:100%;height:100%;object-fit:cover;
 }
+
+/* ══ BRAND LINEUP BANNER ════════════════════════════════════════════════
+   The company's own lineup artwork is light-ground, so it is framed rather
+   than bled into the dark page — it reads as a deliberate poster.          */
+.lineup{
+  margin:0;border-radius:var(--r-xl);overflow:hidden;
+  border:1px solid var(--border-hi);
+  box-shadow:0 34px 80px -34px rgba(0,0,0,.85),
+             0 0 0 1px rgba(34,197,94,.12) inset;
+  background:#fff;
+  transition:transform .6s var(--ease),box-shadow .6s var(--ease);
+}
+.lineup:hover{
+  transform:translateY(-6px);
+  box-shadow:0 44px 96px -34px rgba(0,0,0,.9),
+             0 0 44px -12px rgba(34,197,94,.35);
+}
+.lineup img{width:100%;height:auto}
