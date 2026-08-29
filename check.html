@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>فحص التركيب — First 1 Car</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:#020617;color:#f1f5f9;font-family:Tahoma,Arial,sans-serif;
+       line-height:1.8;padding:24px 16px 60px}
+  .wrap{max-width:760px;margin:0 auto}
+  h1{font-size:22px;margin-bottom:6px}
+  .sub{color:#94a3b8;font-size:14px;margin-bottom:22px}
+  .row{display:flex;gap:12px;align-items:flex-start;padding:14px 16px;
+       border:1px solid rgba(255,255,255,.08);border-radius:14px;margin-bottom:10px;
+       background:rgba(15,23,42,.7)}
+  .row.ok{border-color:rgba(34,197,94,.4)}
+  .row.bad{border-color:rgba(239,68,68,.5)}
+  .row.warn{border-color:rgba(245,158,11,.5)}
+  .ico{font-size:20px;flex-shrink:0;line-height:1.4}
+  .ttl{font-weight:bold;font-size:15px}
+  .det{color:#94a3b8;font-size:13px;word-break:break-all}
+  .fix{color:#fca5a5;font-size:13px;margin-top:6px}
+  .fix.warn{color:#fcd34d}
+  .box{margin-top:22px;padding:16px 18px;border-radius:14px;
+       background:rgba(147,51,234,.12);border:1px solid rgba(147,51,234,.32);
+       color:#ddd6fe;font-size:14px}
+  code{background:rgba(0,0,0,.45);padding:2px 7px;border-radius:5px;
+       font-family:Consolas,monospace;font-size:12.5px;direction:ltr;display:inline-block}
+  .verdict{padding:18px;border-radius:16px;margin-bottom:20px;font-size:15px;font-weight:bold}
+  .verdict.good{background:rgba(34,197,94,.14);border:1px solid rgba(34,197,94,.4);color:#86efac}
+  .verdict.bad{background:rgba(239,68,68,.14);border:1px solid rgba(239,68,68,.4);color:#fca5a5}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>🔍 فحص تركيب الموقع</h1>
+  <p class="sub">الصفحة دي بتقول لك الموقع اترفع صح ولا لأ. امسحها من السيرفر بعد ما تخلص.</p>
+  <div id="verdict"></div>
+  <div id="out"></div>
+
+  <div class="box">
+    <b>بعد ما تصلّح المشكلة:</b> افتح الصفحة دي تاني (اضغط Ctrl+F5 عشان تتأكد إنها مش من الكاش)،
+    ولما كل حاجة تبقى خضرا امسح الملف <code>check.html</code> من السيرفر.
+  </div>
+</div>
+
+<script>
+(function () {
+  var out = document.getElementById('out');
+  var results = [];
+
+  function row(state, icon, title, detail, fix) {
+    var d = document.createElement('div');
+    d.className = 'row ' + state;
+    d.innerHTML = '<div class="ico">' + icon + '</div><div>' +
+                  '<div class="ttl">' + title + '</div>' +
+                  (detail ? '<div class="det">' + detail + '</div>' : '') +
+                  (fix ? '<div class="fix' + (state === 'warn' ? ' warn' : '') + '">' + fix + '</div>' : '') +
+                  '</div>';
+    out.appendChild(d);
+    results.push(state);
+  }
+
+  /* ── 1. Where is this file actually sitting? ── */
+  var path = location.pathname;
+  var dir  = path.replace(/[^/]*$/, '');
+  var inSubfolder = dir !== '/' && dir !== '';
+
+  row(inSubfolder ? 'bad' : 'ok',
+      inSubfolder ? '❌' : '✅',
+      inSubfolder ? 'الملفات في مجلد فرعي — دي على الأغلب المشكلة'
+                  : 'الملفات في المكان الصح (جذر الموقع)',
+      'المسار الحالي: ' + dir,
+      inSubfolder
+        ? 'ملف ZIP بتاع GitHub بيفك في مجلد جواه. لازم تدخل جوه المجلد ده، تختار كل الملفات، '
+          + 'وتنقلهم لـ <code>public_html</code> مباشرة — وبعدين تمسح المجلد الفاضي.'
+        : '');
+
+  /* ── 2. Do the site's own files load from here? ── */
+  var files = [
+    ['assets/css/base.css',  'ملف التنسيقات'],
+    ['assets/js/data.js',    'ملف البيانات'],
+    ['assets/js/site.js',    'ملف السكريبت'],
+    ['assets/img/logo.png',  'اللوجو'],
+    ['cars.html',            'صفحة السيارات']
+  ];
+
+  var done = 0;
+  files.forEach(function (f) {
+    var url = dir + f[0] + '?t=' + Date.now();
+    fetch(url, { cache: 'no-store' })
+      .then(function (r) {
+        if (r.ok) {
+          row('ok', '✅', f[1] + ' — موجود', f[0]);
+        } else {
+          row('bad', '❌', f[1] + ' — مش موجود (' + r.status + ')', f[0],
+              r.status === 404
+                ? 'الملف ده ناقص. اتأكد إن مجلد <code>assets</code> اترفع كامل بكل اللي جواه.'
+                : 'السيرفر رفض الملف. غالباً مشكلة صلاحيات أو ملف <code>.htaccess</code>.');
+        }
+      })
+      .catch(function () {
+        row('bad', '❌', f[1] + ' — فشل التحميل', f[0],
+            'مفيش رد من السيرفر على الملف ده.');
+      })
+      .finally(function () {
+        if (++done === files.length) finish();
+      });
+  });
+
+  /* ── 3. Which index does the server serve? ── */
+  fetch(dir + '?t=' + Date.now(), { cache: 'no-store' })
+    .then(function (r) { return r.text(); })
+    .then(function (html) {
+      var isSite   = html.indexOf('site-header') > -1 || html.indexOf('car-hero') > -1;
+      var isSystem = html.indexOf('login.php') > -1 || html.indexOf('نظام إدارة') > -1;
+      if (isSite) {
+        row('ok', '✅', 'العنوان الرئيسي بيفتح الموقع الجديد', dir);
+      } else if (isSystem) {
+        row('bad', '❌', 'العنوان الرئيسي لسه بيفتح نظام الموظفين',
+            dir,
+            'السيرفر بيفضّل <code>index.php</code> على <code>index.html</code>. '
+            + 'ارفع ملف <code>.htaccess</code> اللي جاي مع الموقع — فيه السطر اللي بيصلّح ده.');
+      } else {
+        row('warn', '⚠️', 'مش قادر أحدد الصفحة اللي بتفتح على العنوان الرئيسي', dir,
+            'افتح العنوان الرئيسي بنفسك وشوف بيظهر إيه.');
+      }
+    })
+    .catch(function () {
+      row('warn', '⚠️', 'مش قادر أقرا الصفحة الرئيسية', dir, '');
+    });
+
+  function finish() {
+    var bad = results.filter(function (r) { return r === 'bad'; }).length;
+    var v = document.getElementById('verdict');
+    v.className = 'verdict ' + (bad ? 'bad' : 'good');
+    v.textContent = bad
+      ? '❌ فيه ' + bad + ' مشكلة — اقرا التفاصيل تحت، كل واحدة مكتوب جنبها الحل.'
+      : '✅ كل حاجة تمام. الموقع مركّب صح.';
+  }
+})();
+</script>
+</body>
+</html>

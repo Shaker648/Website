@@ -1,0 +1,67 @@
+# =======================================================================
+# First 1 Car  -  website configuration for Apache / Hostinger
+#
+# ! IMPORTANT: if the internal system also lives in public_html, this file
+#   REPLACES the system's own .htaccess. That is why the system's
+#   protection rules are repeated at the bottom  -  nothing is lost.
+# =======================================================================
+
+# -- 1. The website must win over the system's login page ---------------
+# Apache serves index.php before index.html by default, so without this
+# line first1car.net would keep showing the staff login instead of the
+# website. Listing index.html first fixes that.
+DirectoryIndex index.html index.htm index.php
+
+# -- 2. Arabic must not arrive as mojibake ------------------------------
+AddDefaultCharset UTF-8
+<IfModule mod_mime.c>
+    AddCharset UTF-8 .html .css .js .json .svg
+</IfModule>
+
+# -- 3. Never list a folder's contents ----------------------------------
+Options -Indexes
+
+# -- 4. Compression  -  the pages are text, so this roughly quarters them -
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/html text/css text/plain
+    AddOutputFilterByType DEFLATE application/javascript text/javascript
+    AddOutputFilterByType DEFLATE image/svg+xml application/json
+</IfModule>
+
+# -- 5. Caching ---------------------------------------------------------
+# Images and fonts sit still for a year; CSS and JS for a week so edits
+# appear reasonably quickly; HTML is never cached, so new prices and
+# branches show up the moment they are uploaded.
+<IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresByType image/jpeg              "access plus 1 year"
+    ExpiresByType image/png               "access plus 1 year"
+    ExpiresByType image/webp              "access plus 1 year"
+    ExpiresByType image/svg+xml           "access plus 1 year"
+    ExpiresByType font/woff2              "access plus 1 year"
+    ExpiresByType text/css                "access plus 1 week"
+    ExpiresByType application/javascript  "access plus 1 week"
+    ExpiresByType text/html               "access plus 0 seconds"
+</IfModule>
+
+# -- 6. Safe response headers -------------------------------------------
+<IfModule mod_headers.c>
+    Header set X-Content-Type-Options "nosniff"
+    Header set X-Frame-Options "SAMEORIGIN"
+    Header set Referrer-Policy "strict-origin-when-cross-origin"
+    <FilesMatch "\.html$">
+        Header set Cache-Control "no-cache, must-revalidate"
+    </FilesMatch>
+</IfModule>
+
+# =======================================================================
+# Carried over from the internal system's .htaccess, so these protections
+# survive even if this file sits next to the system in public_html.
+# =======================================================================
+<FilesMatch "\.(log|sql|bak|inc|ini|md|sh|json~)$">
+    Require all denied
+</FilesMatch>
+
+<FilesMatch "^(config|auth|ai_config)\.php$">
+    Require all denied
+</FilesMatch>

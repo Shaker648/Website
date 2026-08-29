@@ -1,4 +1,7 @@
 User-agent: *
 Allow: /
 
+# temporary deployment check page - delete it once the site is live
+Disallow: /check.html
+
 Sitemap: https://first1car.net/sitemap.xml
