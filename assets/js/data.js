@@ -141,18 +141,18 @@ const SITE = {
         { name:{ar:"تيجو 7 برو CKD",en:"Tiggo 7 Pro CKD"}, body:"suv", trims:["Comfort","Luxury"] },
         { name:{ar:"تيجو 7 برو ماكس",en:"Tiggo 7 Pro Max"}, body:"suv", trims:["Comfort","Luxury"], photo:"assets/img/cars/tiggo-7-pro.jpg"  },
         { name:{ar:"تيجو 8",en:"Tiggo 8"},         body:"suv",   trims:["Luxury 5 Seats","Comfort 7 Seats","Luxury 7 Seats"] },
-        { name:{ar:"تيجو 8 برو ماكس",en:"Tiggo 8 Pro Max"}, body:"suv", trims:["Luxury","Flagship"] },
+        { name:{ar:"تيجو 8 برو ماكس",en:"Tiggo 8 Pro Max"}, body:"suv", trims:["Luxury","Flagship"], photo:"assets/img/cars/tiggo-8-pro-max.jpg"  },
         { name:{ar:"تيجو 9 هايبرد",en:"Tiggo 9 PHEV"}, body:"suv", trims:["Luxury"], photo:"assets/img/cars/tiggo-9.jpg"  },
         { name:{ar:"أريزو 5",en:"Arrizo 5"},       body:"sedan", trims:["MT","AT Basic","AT Comfort"], photo:"assets/img/cars/arrizo-5-eado.jpg"  },
         { name:{ar:"أريزو 6",en:"Arrizo 6"},       body:"sedan", trims:["Comfort","Luxury"], photo:"assets/img/cars/arrizo-6.jpg"  },
-        { name:{ar:"أريزو 8",en:"Arrizo 8"},       body:"sedan", trims:["Luxury","Flagship"] }
+        { name:{ar:"أريزو 8",en:"Arrizo 8"},       body:"sedan", trims:["Luxury","Flagship"], photo:"assets/img/cars/arrizo-8.jpg"  }
       ]
     },
     {
       id: "hyundai", name: { ar: "هيونداي", en: "Hyundai" }, color: "#002c5f", logo: "",
       models: [
         { name:{ar:"توسان",en:"Tucson"},           body:"suv",   trims:["Shadow","Blaze","Redline","Redline N-Pack","Night","Black Diamond","N-Line"] },
-        { name:{ar:"إلنترا AD",en:"Elantra AD"},   body:"sedan", trims:["Modern SR","Top Line"] },
+        { name:{ar:"إلنترا AD",en:"Elantra AD"},   body:"sedan", trims:["Modern SR","Top Line"], photo:"assets/img/cars/elantra-ad.jpg"  },
         { name:{ar:"i30 هاتشباك",en:"i30 Hatchback"}, body:"hatch", trims:["Blaze","Redline","N-Line"], photo:"assets/img/cars/i30.jpg"  },
         { name:{ar:"i30 فاست باك",en:"i30 Fastback"}, body:"sedan", trims:["Blaze","Redline","N-Line"] },
         { name:{ar:"i30 ستيشن",en:"i30 Station"},  body:"wagon", trims:["Blaze","Redline"] }
@@ -163,7 +163,7 @@ const SITE = {
       models: [
         { name:{ar:"جوليون",en:"Jolion"}, body:"suv", trims:["Standard CKD","Deluxe CKD","High Deluxe CKD"], photo:"assets/img/cars/jolion.jpg"  },
         { name:{ar:"H6",en:"H6"},         body:"suv", trims:["Platinum","Ultra","HEV Ultra"] },
-        { name:{ar:"H7",en:"H7"},         body:"suv", trims:["Ultra","Ultra Black Edition"] }
+        { name:{ar:"H7",en:"H7"},         body:"suv", trims:["Ultra","Ultra Black Edition"], photo:"assets/img/cars/h7.jpg"  }
       ]
     },
     {
@@ -171,7 +171,7 @@ const SITE = {
       models: [
         { name:{ar:"CS35 بلس",en:"CS35 Plus"}, body:"suv",   trims:["Elite","Premium","Flagship"] },
         { name:{ar:"CS55 بلس",en:"CS55 Plus"}, body:"suv",   trims:["Elite","Premium","Flagship"], photo:"assets/img/cars/cs55-plus.jpg"  },
-        { name:{ar:"CS75",en:"CS75"},          body:"suv",   trims:["Elite","Flagship"] },
+        { name:{ar:"CS75",en:"CS75"},          body:"suv",   trims:["Elite","Flagship"], photo:"assets/img/cars/cs75.jpg"  },
         { name:{ar:"UNI-T",en:"UNI-T"},        body:"suv",   trims:["Premium","Flagship"], photo:"assets/img/cars/uni-t.jpg"  },
         { name:{ar:"إيدو",en:"Eado"},          body:"sedan", trims:["Elite","Flagship"], photo:"assets/img/cars/arrizo-5-eado.jpg"  },
         { name:{ar:"إيدو بلس",en:"Eado Plus"}, body:"sedan", trims:["Elite","Premium","Flagship"] },
@@ -190,7 +190,7 @@ const SITE = {
       id: "mitsubishi", name: { ar: "ميتسوبيشي", en: "Mitsubishi" }, color: "#e60012", logo: "",
       models: [
         { name:{ar:"ديستيناتور",en:"Destinator"},   body:"suv", trims:["ML","HL","PL"], photo:"assets/img/cars/destinator.jpg"  },
-        { name:{ar:"أوتلاندر",en:"Outlander"},      body:"suv", trims:["ML","HL","PL"] },
+        { name:{ar:"أوتلاندر",en:"Outlander"},      body:"suv", trims:["ML","HL","PL"], photo:"assets/img/cars/outlander.jpg"  },
         { name:{ar:"إكليبس كروس",en:"Eclipse Cross"}, body:"suv", trims:["Inspire HI","Instyle TI","Infinity"] },
         { name:{ar:"إكسباندر",en:"Xpander"},        body:"mpv", trims:["ML","HL","PL"], photo:"assets/img/cars/xpander.jpg"  }
       ]
@@ -241,7 +241,7 @@ const SITE = {
      full https:// URL. Leave "" and the page keeps its designed placeholder.
      A photo that fails to load falls back to the placeholder on its own.    */
   photos: {
-    exterior:     "",   // home · "من بره"
+    exterior:     "assets/img/showroom-night.jpg",  // home · exterior
     interior:     "",   // home · "من جوه"
     showroom:     "",   // home · "السعر الرسمي"
     showroomWide: "assets/img/showroom-gac.jpg",  // about · our story
