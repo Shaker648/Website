@@ -20,7 +20,10 @@
   .hero-trust{justify-content:center}
 }
 
-.hero h1{margin-bottom:1.35rem;max-width:19ch}
+/* The Arabic headline runs longer than the English, so the hero gets its
+   own scale — each phrase should hold on one line down to tablet. */
+.hero h1{margin-bottom:1.35rem;max-width:24ch;
+         font-size:clamp(1.95rem,4.3vw,3.05rem)}
 @media (max-width:1000px){.hero h1{max-width:none;margin-inline:auto}}
 .hero h1 .line{display:block;overflow:hidden}
 .hero h1 .line > span{
@@ -565,3 +568,19 @@ a:hover > .bplate,.marquee-item:hover .bplate{
              0 0 44px -12px rgba(34,197,94,.35);
 }
 .lineup img{width:100%;height:auto}
+
+/* ══ HERO PHOTOGRAPH ════════════════════════════════════════════════════
+   When a real photograph loads it replaces the drawn car entirely — the
+   decorative streaks and ground glow go with it, since the photograph
+   brings its own lighting.                                               */
+.hero-photo{
+  width:100%;height:auto;border-radius:var(--r-xl);
+  border:1px solid var(--border);
+  box-shadow:0 40px 90px -40px rgba(0,0,0,.95),
+             0 0 70px -24px rgba(34,197,94,.4);
+  animation:hover 6s ease-in-out infinite;
+  will-change:transform;
+}
+.hero-stage.has-photo .car-art,
+.hero-stage.has-photo .car-pad,
+.hero-stage.has-photo .streaks{display:none}

@@ -137,13 +137,13 @@ const SITE = {
       id: "chery", name: { ar: "شيري", en: "Chery" }, color: "#d51c29", logo: "",
       models: [
         { name:{ar:"تيجو 4 برو",en:"Tiggo 4 Pro"}, body:"suv",   trims:["Comfort","Luxury","Turbo"], photo:"assets/img/cars/tiggo-4-pro.jpg"  },
-        { name:{ar:"تيجو 7",en:"Tiggo 7"},         body:"suv",   trims:["Comfort","Luxury"] },
+        { name:{ar:"تيجو 7",en:"Tiggo 7"},         body:"suv",   trims:["Comfort","Luxury"], photo:"assets/img/cars/tiggo-7.jpg"  },
         { name:{ar:"تيجو 7 برو CKD",en:"Tiggo 7 Pro CKD"}, body:"suv", trims:["Comfort","Luxury"] },
         { name:{ar:"تيجو 7 برو ماكس",en:"Tiggo 7 Pro Max"}, body:"suv", trims:["Comfort","Luxury"], photo:"assets/img/cars/tiggo-7-pro.jpg"  },
-        { name:{ar:"تيجو 8",en:"Tiggo 8"},         body:"suv",   trims:["Luxury 5 Seats","Comfort 7 Seats","Luxury 7 Seats"] },
+        { name:{ar:"تيجو 8",en:"Tiggo 8"},         body:"suv",   trims:["Luxury 5 Seats","Comfort 7 Seats","Luxury 7 Seats"], photo:"assets/img/cars/tiggo-8.jpg"  },
         { name:{ar:"تيجو 8 برو ماكس",en:"Tiggo 8 Pro Max"}, body:"suv", trims:["Luxury","Flagship"], photo:"assets/img/cars/tiggo-8-pro-max.jpg"  },
         { name:{ar:"تيجو 9 هايبرد",en:"Tiggo 9 PHEV"}, body:"suv", trims:["Luxury"], photo:"assets/img/cars/tiggo-9.jpg"  },
-        { name:{ar:"أريزو 5",en:"Arrizo 5"},       body:"sedan", trims:["MT","AT Basic","AT Comfort"], photo:"assets/img/cars/arrizo-5-eado.jpg"  },
+        { name:{ar:"أريزو 5",en:"Arrizo 5"},       body:"sedan", trims:["MT","AT Basic","AT Comfort"], photo:"assets/img/cars/arrizo-5.jpg"  },
         { name:{ar:"أريزو 6",en:"Arrizo 6"},       body:"sedan", trims:["Comfort","Luxury"], photo:"assets/img/cars/arrizo-6.jpg"  },
         { name:{ar:"أريزو 8",en:"Arrizo 8"},       body:"sedan", trims:["Luxury","Flagship"], photo:"assets/img/cars/arrizo-8.jpg"  }
       ]
@@ -151,30 +151,30 @@ const SITE = {
     {
       id: "hyundai", name: { ar: "هيونداي", en: "Hyundai" }, color: "#002c5f", logo: "",
       models: [
-        { name:{ar:"توسان",en:"Tucson"},           body:"suv",   trims:["Shadow","Blaze","Redline","Redline N-Pack","Night","Black Diamond","N-Line"] },
+        { name:{ar:"توسان",en:"Tucson"},           body:"suv",   trims:["Shadow","Blaze","Redline","Redline N-Pack","Night","Black Diamond","N-Line"], photo:"assets/img/cars/tucson.jpg"  },
         { name:{ar:"إلنترا AD",en:"Elantra AD"},   body:"sedan", trims:["Modern SR","Top Line"], photo:"assets/img/cars/elantra-ad.jpg"  },
         { name:{ar:"i30 هاتشباك",en:"i30 Hatchback"}, body:"hatch", trims:["Blaze","Redline","N-Line"], photo:"assets/img/cars/i30.jpg"  },
-        { name:{ar:"i30 فاست باك",en:"i30 Fastback"}, body:"sedan", trims:["Blaze","Redline","N-Line"] },
-        { name:{ar:"i30 ستيشن",en:"i30 Station"},  body:"wagon", trims:["Blaze","Redline"] }
+        { name:{ar:"i30 فاست باك",en:"i30 Fastback"}, body:"sedan", trims:["Blaze","Redline","N-Line"], photo:"assets/img/cars/i30-fastback.jpg"  },
+        { name:{ar:"i30 ستيشن",en:"i30 Station"},  body:"wagon", trims:["Blaze","Redline"], photo:"assets/img/cars/i30-station.jpg"  }
       ]
     },
     {
       id: "haval", name: { ar: "هافال", en: "Haval" }, color: "#c1121f", logo: "",
       models: [
         { name:{ar:"جوليون",en:"Jolion"}, body:"suv", trims:["Standard CKD","Deluxe CKD","High Deluxe CKD"], photo:"assets/img/cars/jolion.jpg"  },
-        { name:{ar:"H6",en:"H6"},         body:"suv", trims:["Platinum","Ultra","HEV Ultra"] },
+        { name:{ar:"H6",en:"H6"},         body:"suv", trims:["Platinum","Ultra","HEV Ultra"], photo:"assets/img/cars/h6.jpg"  },
         { name:{ar:"H7",en:"H7"},         body:"suv", trims:["Ultra","Ultra Black Edition"], photo:"assets/img/cars/h7.jpg"  }
       ]
     },
     {
       id: "changan", name: { ar: "شانجان", en: "Changan" }, color: "#0057b8", logo: "",
       models: [
-        { name:{ar:"CS35 بلس",en:"CS35 Plus"}, body:"suv",   trims:["Elite","Premium","Flagship"] },
+        { name:{ar:"CS35 بلس",en:"CS35 Plus"}, body:"suv",   trims:["Elite","Premium","Flagship"], photo:"assets/img/cars/cs35-plus.jpg"  },
         { name:{ar:"CS55 بلس",en:"CS55 Plus"}, body:"suv",   trims:["Elite","Premium","Flagship"], photo:"assets/img/cars/cs55-plus.jpg"  },
         { name:{ar:"CS75",en:"CS75"},          body:"suv",   trims:["Elite","Flagship"], photo:"assets/img/cars/cs75.jpg"  },
         { name:{ar:"UNI-T",en:"UNI-T"},        body:"suv",   trims:["Premium","Flagship"], photo:"assets/img/cars/uni-t.jpg"  },
-        { name:{ar:"إيدو",en:"Eado"},          body:"sedan", trims:["Elite","Flagship"], photo:"assets/img/cars/arrizo-5-eado.jpg"  },
-        { name:{ar:"إيدو بلس",en:"Eado Plus"}, body:"sedan", trims:["Elite","Premium","Flagship"] },
+        { name:{ar:"إيدو",en:"Eado"},          body:"sedan", trims:["Elite","Flagship"], photo:"assets/img/cars/eado.jpg"  },
+        { name:{ar:"إيدو بلس",en:"Eado Plus"}, body:"sedan", trims:["Elite","Premium","Flagship"], photo:"assets/img/cars/eado-plus.jpg"  },
         { name:{ar:"UNI-V",en:"UNI-V"},        body:"sedan", trims:["Flagship"], photo:"assets/img/cars/uni-v.jpg"  }
       ]
     },
@@ -182,7 +182,7 @@ const SITE = {
       id: "geely", name: { ar: "جيلي", en: "Geely" }, color: "#0b3d91", logo: "",
       models: [
         { name:{ar:"كوول راي",en:"Coolray"},   body:"suv",   trims:["Comfort","Premium","Sport"] },
-        { name:{ar:"سيتي راي",en:"Cityray"},   body:"suv",   trims:["Comfort","Premium","Sport"] },
+        { name:{ar:"سيتي راي",en:"Cityray"},   body:"suv",   trims:["Comfort","Premium","Sport"], photo:"assets/img/cars/cityray.jpg"  },
         { name:{ar:"إمجراند",en:"Emgrand"},    body:"sedan", trims:["Comfort","Luxury"], photo:"assets/img/cars/emgrand.jpg"  }
       ]
     },
@@ -191,16 +191,16 @@ const SITE = {
       models: [
         { name:{ar:"ديستيناتور",en:"Destinator"},   body:"suv", trims:["ML","HL","PL"], photo:"assets/img/cars/destinator.jpg"  },
         { name:{ar:"أوتلاندر",en:"Outlander"},      body:"suv", trims:["ML","HL","PL"], photo:"assets/img/cars/outlander.jpg"  },
-        { name:{ar:"إكليبس كروس",en:"Eclipse Cross"}, body:"suv", trims:["Inspire HI","Instyle TI","Infinity"] },
+        { name:{ar:"إكليبس كروس",en:"Eclipse Cross"}, body:"suv", trims:["Inspire HI","Instyle TI","Infinity"], photo:"assets/img/cars/eclipse-cross.jpg"  },
         { name:{ar:"إكسباندر",en:"Xpander"},        body:"mpv", trims:["ML","HL","PL"], photo:"assets/img/cars/xpander.jpg"  }
       ]
     },
     {
       id: "gac", name: { ar: "جي إيه سي", en: "GAC" }, color: "#1a1a1a", logo: "",
       models: [
-        { name:{ar:"GS3 إمزوم",en:"GS3 Emzoom"}, body:"suv",   trims:["Comfort","Elegance","Premium","R-Style"] },
-        { name:{ar:"GS4",en:"GS4"},              body:"suv",   trims:["Premium"] },
-        { name:{ar:"إمباو",en:"Empow"},          body:"sedan", trims:["Baseline","Premium","Sportline"] }
+        { name:{ar:"GS3 إمزوم",en:"GS3 Emzoom"}, body:"suv",   trims:["Comfort","Elegance","Premium","R-Style"], photo:"assets/img/cars/gs3-emzoom.jpg"  },
+        { name:{ar:"GS4",en:"GS4"},              body:"suv",   trims:["Premium"], photo:"assets/img/cars/gs4.jpg"  },
+        { name:{ar:"إمباو",en:"Empow"},          body:"sedan", trims:["Baseline","Premium","Sportline"], photo:"assets/img/cars/empow.jpg"  }
       ]
     },
     {
@@ -241,6 +241,8 @@ const SITE = {
      full https:// URL. Leave "" and the page keeps its designed placeholder.
      A photo that fails to load falls back to the placeholder on its own.    */
   photos: {
+    /* The hero image on the home page. Leave "" and the drawn car returns. */
+    hero:         "assets/img/hero-car.jpg",
     exterior:     "assets/img/showroom-night.jpg",  // home · exterior
     interior:     "",   // home · "من جوه"
     showroom:     "",   // home · "السعر الرسمي"

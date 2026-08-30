@@ -362,6 +362,27 @@
 
 
 
+
+  /* ── Hero photograph ────────────────────────────────────────────────
+     The drawn car ships in the markup so the hero is never empty. When
+     SITE.photos.hero names an image that actually loads, it takes over
+     and the drawing steps aside; if it fails, the drawing simply stays. */
+  function initHeroPhoto() {
+    var src   = (SITE.photos || {}).hero;
+    var stage = document.querySelector('.hero-stage');
+    if (!src || !stage) return;
+
+    var img = new Image();
+    img.className = 'hero-photo';
+    img.alt = '';
+    img.onload = function () {
+      stage.classList.add('has-photo');   // hides the drawing, streaks and pad
+    };
+    img.onerror = function () { img.remove(); };
+    img.src = src;
+    stage.appendChild(img);
+  }
+
   /* ── Showcase photography ───────────────────────────────────────────
      Each .showcase-media carries a data-photo key into SITE.photos. When
      that slot holds a path or URL the image is laid over the designed
@@ -406,6 +427,7 @@
     initCounters();
     wireCTAs();
     initPhotos();
+    initHeroPhoto();
   }
 
   if (document.readyState === 'loading') {
