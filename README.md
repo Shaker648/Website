@@ -52,6 +52,9 @@ Most of the data is now real, taken from the system database. Only these remain:
 
 لما تجيب اللوجوهات الرسمية (من الوكلاء أو من البنوك):
 
+**البنوك الأربعة عشر لديها لوجوهاتها بالفعل** في `assets/img/banks/`.
+الناقص هو لوجوهات الماركات التسع فقط.
+
 **١.** حطهم PNG أو SVG بخلفية شفافة بالأسماء دي بالظبط:
 
 ```
@@ -74,7 +77,7 @@ assets/img/brands/foton.png       assets/img/banks/agri.png
 **٢.** في `assets/js/data.js` غيّر سطر واحد:
 
 ```js
-const USE_LOGO_FILES = true;
+const USE_BRAND_LOGO_FILES = true;
 ```
 
 خلاص. أي لوجو مش موجود هيفضل بالبلاطة بتاعته — **الموقع عمره ما هيعرض صورة مكسورة.**
@@ -113,7 +116,7 @@ Any missing logo simply keeps its plate; the site never shows a broken image.
 
 ```js
 photos: {
-  hero:         "assets/img/hero-car.jpg",       // صورة الهيرو في الرئيسية
+  hero:         "assets/img/brand-lineup.jpg",   // صورة الهيرو في الرئيسية
   exterior:     "assets/img/cars/exterior.jpg",   // الرئيسية · من بره
   interior:     "assets/img/interior/cabin.jpg",  // الرئيسية · من جوه
   showroom:     "assets/img/cars/showroom.jpg",   // الرئيسية · السعر

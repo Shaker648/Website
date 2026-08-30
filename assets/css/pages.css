@@ -526,10 +526,14 @@ a:hover > .bplate,.marquee-item:hover .bplate{
 }
 .cred small{display:block;font-size:.88rem;color:var(--muted);font-weight:600}
 
-/* banks render as plates in a tidy grid */
-.bank-grid{grid-template-columns:repeat(auto-fill,minmax(176px,1fr))}
+/* Banks render as logo plates in a tidy grid. They are given more height
+   and a larger cap than the brand plates, because a bank mark is usually
+   a wordmark that has to stay readable at a glance. */
+.bank-grid{grid-template-columns:repeat(auto-fill,minmax(184px,1fr))}
 .bank-cell{display:flex;align-items:center;justify-content:center}
-.bank-cell .bplate{width:100%;font-size:.9rem;padding:0 .8rem}
+.bank-cell .bplate{width:100%;height:70px;font-size:.9rem;padding:0 1rem}
+.bank-cell .bplate.img{padding:.55rem .9rem}
+.bank-cell .bplate.img img{max-height:100%;max-width:100%}
 
 /* ══ MODEL CARD ARTWORK ═════════════════════════════════════════════════
    A body-type silhouette stands in until a real photo is supplied. When a
@@ -575,9 +579,12 @@ a:hover > .bplate,.marquee-item:hover .bplate{
    brings its own lighting.                                               */
 .hero-photo{
   width:100%;height:auto;border-radius:var(--r-xl);
-  border:1px solid var(--border);
+  /* the lineup artwork is light-ground, so it is framed on white rather
+     than bled into the page — the same treatment the section used */
+  background:#fff;
+  border:1px solid var(--border-hi);
   box-shadow:0 40px 90px -40px rgba(0,0,0,.95),
-             0 0 70px -24px rgba(34,197,94,.4);
+             0 0 70px -24px rgba(34,197,94,.35);
   animation:hover 6s ease-in-out infinite;
   will-change:transform;
 }

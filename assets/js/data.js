@@ -220,20 +220,20 @@ const SITE = {
 
   /* ── Finance partners (mirrors installment_bank_list) ────────────────── */
   banks: [
-    { key: "abk", ar: "الأهلي الكويتي", en: "Al Ahli Kuwaiti (ABK)",        logo: "" },
-    { key: "nbk", ar: "الوطني الكويتي", en: "Kuwaiti National (NBK)",       logo: "" },
-    { key: "enbd", ar: "الإمارات دبي الوطني", en: "Emirates NBD",                 logo: "" },
-    { key: "egbank", ar: "إيجي بنك", en: "EG Bank",                      logo: "" },
-    { key: "misr", ar: "بنك مصر", en: "Banque Misr",                  logo: "" },
-    { key: "cairo", ar: "بنك القاهرة", en: "Banque du Caire",              logo: "" },
-    { key: "saib", ar: "بنك سايب", en: "SAIB Bank",                    logo: "" },
-    { key: "ebe", ar: "المصري لتنمية الصادرات", en: "Export Development Bank (EBE)", logo: "" },
-    { key: "agri", ar: "البنك الزراعي المصري", en: "Agricultural Bank of Egypt",   logo: "" },
-    { key: "next", ar: "بنك نكست", en: "Next Bank",                    logo: "" },
-    { key: "agricole", ar: "كريدي أجريكول", en: "Crédit Agricole",              logo: "" },
-    { key: "drive", ar: "شركة درايف", en: "Drive Finance",                logo: "" },
-    { key: "contact", ar: "كونتكت", en: "Contact",                      logo: "" },
-    { key: "sky", ar: "سكاي", en: "Sky",                          logo: "" }
+    { key: "abk", ar: "الأهلي الكويتي", en: "Al Ahli Kuwaiti (ABK)",        logo: "assets/img/banks/abk.png" },
+    { key: "nbk", ar: "الوطني الكويتي", en: "Kuwaiti National (NBK)",       logo: "assets/img/banks/nbk.png" },
+    { key: "enbd", ar: "الإمارات دبي الوطني", en: "Emirates NBD",                 logo: "assets/img/banks/enbd.png" },
+    { key: "egbank", ar: "إيجي بنك", en: "EG Bank",                      logo: "assets/img/banks/egbank.png" },
+    { key: "misr", ar: "بنك مصر", en: "Banque Misr",                  logo: "assets/img/banks/misr.png" },
+    { key: "cairo", ar: "بنك القاهرة", en: "Banque du Caire",              logo: "assets/img/banks/cairo.png" },
+    { key: "saib", ar: "بنك سايب", en: "SAIB Bank",                    logo: "assets/img/banks/saib.png" },
+    { key: "ebe", ar: "المصري لتنمية الصادرات", en: "Export Development Bank (EBE)", logo: "assets/img/banks/ebe.png" },
+    { key: "agri", ar: "البنك الزراعي المصري", en: "Agricultural Bank of Egypt",   logo: "assets/img/banks/agri.png" },
+    { key: "next", ar: "بنك نكست", en: "Next Bank",                    logo: "assets/img/banks/next.png" },
+    { key: "agricole", ar: "كريدي أجريكول", en: "Crédit Agricole",              logo: "assets/img/banks/agricole.png" },
+    { key: "drive", ar: "شركة درايف", en: "Drive Finance",                logo: "assets/img/banks/drive.png" },
+    { key: "contact", ar: "كونتكت", en: "Contact",                      logo: "assets/img/banks/contact.png" },
+    { key: "sky", ar: "سكاي", en: "Sky",                          logo: "assets/img/banks/sky.png" }
   ],
 
   /* ── Photography ─────────────────────────────────────────────────────
@@ -242,7 +242,7 @@ const SITE = {
      A photo that fails to load falls back to the placeholder on its own.    */
   photos: {
     /* The hero image on the home page. Leave "" and the drawn car returns. */
-    hero:         "assets/img/hero-car.jpg",
+    hero:         "assets/img/brand-lineup.jpg",
     exterior:     "assets/img/showroom-night.jpg",  // home · exterior
     interior:     "",   // home · "من جوه"
     showroom:     "",   // home · "السعر الرسمي"
@@ -266,19 +266,19 @@ const SITE = {
 /* ── Logo files ───────────────────────────────────────────────────────────
    The site ships with typographic brand plates, which need no image files.
 
-   When you have the real logos, drop them in as PNG or SVG with transparent
-   backgrounds, named by the id/key shown above:
+   The banks already carry their real logos above. The nine car brands still
+   render a typographic plate. When you have the manufacturer marks, drop
+   them in with transparent backgrounds named by brand id:
 
-       assets/img/brands/chery.png   assets/img/brands/hyundai.png   …
-       assets/img/banks/misr.png     assets/img/banks/cairo.png      …
+       assets/img/brands/chery.png   assets/img/brands/hyundai.png
+       assets/img/brands/haval.png   assets/img/brands/changan.png   …
 
-   then flip this to true. Any logo still missing simply keeps its plate —
+   then flip this to true. Any mark still missing simply keeps its plate —
    nothing on the page ever breaks.                                          */
-const USE_LOGO_FILES = false;
+const USE_BRAND_LOGO_FILES = false;
 
-if (USE_LOGO_FILES) {
+if (USE_BRAND_LOGO_FILES) {
   SITE.brands.forEach(function (b) { if (!b.logo) b.logo = 'assets/img/brands/' + b.id + '.png'; });
-  SITE.banks.forEach(function (b)  { if (!b.logo) b.logo = 'assets/img/banks/'  + b.key + '.png'; });
 }
 
 /* Derived counts, so the copy never drifts from the data above. */
