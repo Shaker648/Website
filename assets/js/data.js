@@ -181,7 +181,7 @@ const SITE = {
     {
       id: "geely", name: { ar: "جيلي", en: "Geely" }, color: "#0b3d91", logo: "",
       models: [
-        { name:{ar:"كوول راي",en:"Coolray"},   body:"suv",   trims:["Comfort","Premium","Sport"] },
+        { name:{ar:"كوول راي",en:"Coolray"},   body:"suv",   trims:["Comfort","Premium","Sport"], photo:"assets/img/cars/coolray.jpg"  },
         { name:{ar:"سيتي راي",en:"Cityray"},   body:"suv",   trims:["Comfort","Premium","Sport"], photo:"assets/img/cars/cityray.jpg"  },
         { name:{ar:"إمجراند",en:"Emgrand"},    body:"sedan", trims:["Comfort","Luxury"], photo:"assets/img/cars/emgrand.jpg"  }
       ]
@@ -206,13 +206,13 @@ const SITE = {
     {
       id: "jmc", name: { ar: "جيه إم سي", en: "JMC" }, color: "#0f5298", logo: "",
       models: [
-        { name:{ar:"بيك أب",en:"Pickup"}, body:"pickup", trims:["Standard"] }
+        { name:{ar:"بيك أب",en:"Pickup"}, body:"pickup", trims:["Standard"], photo:"assets/img/cars/jmc-pickup.jpg"  }
       ]
     },
     {
       id: "foton", name: { ar: "فوتون", en: "Foton" }, color: "#00539f", logo: "",
       models: [
-        { name:{ar:"ميكروباص",en:"Microbus"},        body:"van",    trims:["Standard"] },
+        { name:{ar:"ميكروباص",en:"Microbus"},        body:"van",    trims:["Standard"], photo:"assets/img/cars/foton-microbus.jpg"  },
         { name:{ar:"وندر نص طن",en:"Wonder 1/2 Ton"}, body:"pickup", trims:["Standard"], photo:"assets/img/cars/foton-wonder.jpg"  }
       ]
     }
@@ -244,7 +244,7 @@ const SITE = {
     /* The hero image on the home page. Leave "" and the drawn car returns. */
     hero:         "assets/img/brand-lineup.jpg",
     exterior:     "assets/img/showroom-night.jpg",  // home · exterior
-    interior:     "",   // home · "من جوه"
+    interior:     "assets/img/interior/cabin.jpg",   // home · "من جوه"
     showroom:     "",   // home · "السعر الرسمي"
     showroomWide: "assets/img/showroom-gac.jpg",  // about · our story
     team:         "",   // about · authorised distributor
