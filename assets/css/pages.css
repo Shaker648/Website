@@ -399,12 +399,17 @@ html[dir="rtl"] .step:hover{transform:translateX(-4px)}
   box-shadow:inset 0 1px 0 rgba(255,255,255,.06);
   transition:transform var(--tr),border-color var(--tr),box-shadow var(--tr);
 }
-.bplate.img{background:#fff;padding:0 .85rem;border-color:rgba(255,255,255,.2)}
-.bplate.img img{max-height:34px;max-width:112px;width:auto;object-fit:contain}
+/* A logo fills its plate rather than being capped in one axis: these marks
+   range from a tall Changan badge to a very wide Haval wordmark, and a
+   single cap would leave one of them tiny. */
+.bplate.img{background:#fff;padding:.42rem .85rem;border-color:rgba(255,255,255,.2);max-width:168px}
+.bplate.img img{max-height:100%;max-width:100%;width:auto;object-fit:contain}
 .bplate.sm{height:40px;font-size:.88rem;padding:0 .9rem;border-radius:11px}
-.bplate.sm.img img{max-height:26px;max-width:88px}
-.bplate.lg{height:64px;font-size:1.3rem;padding:0 1.5rem;border-radius:16px}
-.bplate.lg.img img{max-height:42px;max-width:140px}
+.bplate.sm.img{padding:.3rem .6rem}
+.bplate.lg{height:76px;font-size:1.3rem;padding:0 1.5rem;border-radius:16px}
+/* a very wide wordmark (Haval) would otherwise stretch its plate to twice
+   the width of the rest and break the row's rhythm */
+.bplate.lg.img{padding:.6rem 1.1rem;min-width:132px;max-width:196px}
 
 a:hover > .bplate,.marquee-item:hover .bplate{
   transform:translateY(-3px);

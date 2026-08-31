@@ -52,8 +52,9 @@ Most of the data is now real, taken from the system database. Only these remain:
 
 لما تجيب اللوجوهات الرسمية (من الوكلاء أو من البنوك):
 
-**البنوك الأربعة عشر لديها لوجوهاتها بالفعل** في `assets/img/banks/`.
-الناقص هو لوجوهات الماركات التسع فقط.
+**كل اللوجوهات موجودة بالفعل** — تسع ماركات في `assets/img/brands/`
+وأربعة عشر جهة تمويل في `assets/img/banks/`. القسم ده للمرجع لو حبيت
+تستبدل أي لوجو بنسخة أحدث.
 
 **١.** حطهم PNG أو SVG بخلفية شفافة بالأسماء دي بالظبط:
 
@@ -77,7 +78,7 @@ assets/img/brands/foton.png       assets/img/banks/agri.png
 **٢.** في `assets/js/data.js` غيّر سطر واحد:
 
 ```js
-const USE_BRAND_LOGO_FILES = true;
+const USE_BRAND_LOGO_FILES = true;   // مفعّل بالفعل
 ```
 
 خلاص. أي لوجو مش موجود هيفضل بالبلاطة بتاعته — **الموقع عمره ما هيعرض صورة مكسورة.**

@@ -275,7 +275,7 @@ const SITE = {
 
    then flip this to true. Any mark still missing simply keeps its plate —
    nothing on the page ever breaks.                                          */
-const USE_BRAND_LOGO_FILES = false;
+const USE_BRAND_LOGO_FILES = true;
 
 if (USE_BRAND_LOGO_FILES) {
   SITE.brands.forEach(function (b) { if (!b.logo) b.logo = 'assets/img/brands/' + b.id + '.png'; });
