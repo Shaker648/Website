@@ -245,9 +245,9 @@ const SITE = {
     hero:         "assets/img/brand-lineup.jpg",
     exterior:     "assets/img/showroom-night.jpg",  // home · exterior
     interior:     "assets/img/interior/cabin.jpg",   // home · "من جوه"
-    showroom:     "",   // home · "السعر الرسمي"
+    showroom:     "assets/img/prices-updated.jpg",   // home · the price panel
     showroomWide: "assets/img/showroom-gac.jpg",  // about · our story
-    team:         "",   // about · authorised distributor
+    team:         "assets/img/from-agencies.jpg",     // about · authorised distributor
     ops:          ""    // about · how we work
   },
 
