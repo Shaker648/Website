@@ -248,7 +248,7 @@ const SITE = {
     showroom:     "assets/img/prices-updated.jpg",   // home · the price panel
     showroomWide: "assets/img/showroom-gac.jpg",  // about · our story
     team:         "assets/img/from-agencies.jpg",     // about · authorised distributor
-    ops:          ""    // about · how we work
+    ops:          "assets/img/shipment.jpg"   // about · how we work
   },
 
   /* ── Body-type labels used by the cars page filter ───────────────────── */
