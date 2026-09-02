@@ -138,7 +138,7 @@ const SITE = {
       models: [
         { name:{ar:"تيجو 4 برو",en:"Tiggo 4 Pro"}, body:"suv",   trims:["Comfort","Luxury","Turbo"], photo:"assets/img/cars/tiggo-4-pro.jpg"  },
         { name:{ar:"تيجو 7",en:"Tiggo 7"},         body:"suv",   trims:["Comfort","Luxury"], photo:"assets/img/cars/tiggo-7.jpg"  },
-        { name:{ar:"تيجو 7 برو CKD",en:"Tiggo 7 Pro CKD"}, body:"suv", trims:["Comfort","Luxury"] },
+        { name:{ar:"تيجو 7 برو CKD",en:"Tiggo 7 Pro CKD"}, body:"suv", trims:["Comfort","Luxury"], photo:"assets/img/cars/tiggo-7-pro-ckd.jpg"  },
         { name:{ar:"تيجو 7 برو ماكس",en:"Tiggo 7 Pro Max"}, body:"suv", trims:["Comfort","Luxury"], photo:"assets/img/cars/tiggo-7-pro.jpg"  },
         { name:{ar:"تيجو 8",en:"Tiggo 8"},         body:"suv",   trims:["Luxury 5 Seats","Comfort 7 Seats","Luxury 7 Seats"], photo:"assets/img/cars/tiggo-8.jpg"  },
         { name:{ar:"تيجو 8 برو ماكس",en:"Tiggo 8 Pro Max"}, body:"suv", trims:["Luxury","Flagship"], photo:"assets/img/cars/tiggo-8-pro-max.jpg"  },
