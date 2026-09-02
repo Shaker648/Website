@@ -450,11 +450,24 @@
      drawn panel simply stays.                                           */
   function probeMaps() {
     if (!document.querySelector('.map-frame')) return;
-    var probe = new Image();
-    probe.onload = function () {
-      document.documentElement.classList.add('maps-ok');
-    };
-    probe.src = 'https://maps.google.com/favicon.ico?' + Date.now();
+
+    /* Several candidates rather than one: if a single probe URL ever
+       stopped serving an image, the maps would silently never appear
+       even though they load perfectly well. Each is tried in turn and
+       the first success is enough. */
+    var hosts = [
+      'https://maps.google.com/favicon.ico',
+      'https://maps.gstatic.com/favicon.ico',
+      'https://www.google.com/favicon.ico'
+    ];
+
+    (function attempt(i) {
+      if (i >= hosts.length) return;          // none reachable — panels stay drawn
+      var probe = new Image();
+      probe.onload  = function () { document.documentElement.classList.add('maps-ok'); };
+      probe.onerror = function () { attempt(i + 1); };
+      probe.src = hosts[i] + '?' + Date.now();
+    })(0);
   }
 
   /* ── Hero photograph ────────────────────────────────────────────────
