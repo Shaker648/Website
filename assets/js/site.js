@@ -363,6 +363,100 @@
 
 
 
+
+
+  /* ── Structured data ────────────────────────────────────────────────
+     Search engines read this to show the showrooms, their hours, phones
+     and coordinates directly in results and on maps, rather than
+     guessing them from the page text. It is generated from SITE, so it
+     can never drift from what the pages display.                        */
+  function initStructuredData() {
+    if (document.getElementById('ld-business')) return;
+
+    var origin = location.origin.indexOf('http') === 0 && location.hostname !== 'localhost'
+      ? location.origin : 'https://' + 'first1car.net';
+
+    function branchNode(b) {
+      var node = {
+        '@type': 'AutoDealer',
+        name: 'First 1 Car — ' + b.name.en,
+        telephone: (b.phones && b.phones[0]) || SITE.contact.salesLines[0],
+        address: {
+          '@type': 'PostalAddress',
+          addressCountry: 'EG',
+          addressLocality: 'Cairo',
+          streetAddress: b.address ? b.address.en : ''
+        },
+        openingHoursSpecification: {
+          '@type': 'OpeningHoursSpecification',
+          dayOfWeek: ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'],
+          opens: '10:00', closes: '23:00'
+        }
+      };
+      if (b.lat != null && b.lng != null) {
+        node.geo = { '@type': 'GeoCoordinates', latitude: b.lat, longitude: b.lng };
+      }
+      if (b.mapUrl) node.hasMap = b.mapUrl;
+      return node;
+    }
+
+    var data = {
+      '@context': 'https://schema.org',
+      '@type': 'AutoDealer',
+      name: SITE.company.name.en,
+      alternateName: SITE.company.name.ar,
+      url: origin,
+      logo: origin + '/assets/img/logo.png',
+      image: origin + '/assets/img/brand-lineup.jpg',
+      description: SITE.company.intro.en,
+      foundingDate: String(SITE.company.founded),
+      email: SITE.contact.email,
+      telephone: '+2' + SITE.contact.salesLines[0],
+      taxID: SITE.company.taxId,
+      areaServed: { '@type': 'Country', name: 'Egypt' },
+      brand: SITE.brands.map(function (b) {
+        return { '@type': 'Brand', name: b.name.en };
+      }),
+      contactPoint: SITE.contact.salesLines.map(function (n) {
+        return { '@type': 'ContactPoint', telephone: '+2' + n,
+                 contactType: 'sales', availableLanguage: ['ar', 'en'] };
+      }),
+      openingHoursSpecification: {
+        '@type': 'OpeningHoursSpecification',
+        dayOfWeek: ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'],
+        opens: '10:00', closes: '23:00'
+      },
+      department: SITE.branches.filter(function (b) { return !b.comingSoon; }).map(branchNode)
+    };
+
+    var sameAs = ['facebook','instagram','tiktok','youtube']
+      .map(function (k) { return SITE.social[k]; })
+      .filter(Boolean);
+    if (sameAs.length) data.sameAs = sameAs;
+
+    var el = document.createElement('script');
+    el.type = 'application/ld+json';
+    el.id = 'ld-business';
+    el.textContent = JSON.stringify(data);
+    document.head.appendChild(el);
+  }
+
+  /* ── Are Google's map tiles reachable? ──────────────────────────────
+     An embedded map fires its load event even when the request failed,
+     so the frame cannot report its own failure — a blocked embed just
+     paints the browser's broken-content box over whatever sits beneath.
+     Probing a small image on the same host settles it before any frame
+     is revealed: reachable, and the maps fade in; not reachable, and the
+     drawn panel simply stays.                                           */
+  function probeMaps() {
+    if (!document.querySelector('.map-frame')) return;
+    var probe = new Image();
+    probe.onload = function () {
+      document.documentElement.classList.add('maps-ok');
+    };
+    probe.src = 'https://maps.google.com/favicon.ico?' + Date.now();
+  }
+
   /* ── Hero photograph ────────────────────────────────────────────────
      The drawn car ships in the markup so the hero is never empty. When
      SITE.photos.hero names an image that actually loads, it takes over
@@ -428,6 +522,8 @@
     wireCTAs();
     initPhotos();
     initHeroPhoto();
+    probeMaps();
+    initStructuredData();
   }
 
   if (document.readyState === 'loading') {

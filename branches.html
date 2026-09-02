@@ -75,6 +75,46 @@ img{max-width:100%;display:block}
   var grid = document.getElementById('branch-grid');
   var esc  = window.esc;
 
+  /* ── The map panel on a branch card ──────────────────────────────────
+     A real Google map, embedded with the coordinates already held for
+     each branch. Three things make it behave:
+
+     · It is layered over a drawn fallback, and only fades in once the
+       frame reports it loaded — if the embed is ever blocked the card
+       still looks designed rather than broken.
+     · pointer-events are off, so the whole panel is one link to Google
+       Maps. Nobody gets their page-scroll trapped inside a map on a
+       phone, which is the usual failing of embedded maps.
+     · A CSS filter darkens it to the page's palette, and eases off on
+       hover so the map briefly reads in full colour.                    */
+  function mapPanel(b, lang) {
+    var label = lang === 'ar' ? 'الفرع الرئيسي' : 'Main branch';
+    var tag   = b.main ? '<span class="main-tag">' + label + '</span>' : '';
+
+    if (b.lat == null || b.lng == null) {
+      return '<div class="branch-map">' + tag +
+               '<div class="map-fallback"></div>' +
+               '<span class="pin-mark"><i></i></span>' +
+             '</div>';
+    }
+
+    var q   = b.lat + ',' + b.lng;
+    var src = 'https://maps.google.com/maps?q=' + encodeURIComponent(q) +
+              '&z=16&hl=' + (lang === 'ar' ? 'ar' : 'en') + '&output=embed';
+
+    return '<a class="branch-map is-live" href="' + esc(b.mapUrl) + '" ' +
+              'target="_blank" rel="noopener" ' +
+              'aria-label="' + esc(window.tr(b.name)) + '">' +
+             tag +
+             '<div class="map-fallback"></div>' +
+             '<iframe class="map-frame" src="' + esc(src) + '" loading="lazy" ' +
+                'referrerpolicy="no-referrer-when-downgrade" tabindex="-1" ' +
+                'title="' + esc(window.tr(b.name)) + '" ' +
+                'onload="this.classList.add(\'ready\')"></iframe>' +
+             '<span class="pin-mark"><i></i></span>' +
+           '</a>';
+  }
+
   function render() {
     var lang = window.currentLang();
     var hrs  = window.tr(SITE.contact.hours);
@@ -86,7 +126,8 @@ img{max-width:100%;display:block}
           '<article class="card branch-card soon reveal in">' +
             '<div class="branch-map">' +
               '<span class="soon-tag">' + (lang === 'ar' ? 'قريباً' : 'Opening soon') + '</span>' +
-              '<div class="pin">🚧</div>' +
+              '<div class="map-fallback"></div>' +
+              '<span class="pin-mark soon"><i></i></span>' +
             '</div>' +
             '<div class="branch-body">' +
               '<h3>' + esc(window.tr(b.name)) + '</h3>' +
@@ -112,11 +153,7 @@ img{max-width:100%;display:block}
 
       return '' +
         '<article class="card branch-card reveal in">' +
-          '<div class="branch-map">' +
-            (b.main ? '<span class="main-tag">' +
-              (lang === 'ar' ? 'الفرع الرئيسي' : 'Main branch') + '</span>' : '') +
-            '<div class="pin">📍</div>' +
-          '</div>' +
+          mapPanel(b, lang) +
           '<div class="branch-body">' +
             '<h3>' + esc(window.tr(b.name)) + '</h3>' +
             '<div class="branch-row"><span>🗺️</span><span>' +
